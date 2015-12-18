@@ -1,10 +1,17 @@
 /*!
-Theme Name: 5andbox
-Theme URI: https://github.com/dylanfisher/5andbox
+Theme Name: Mr. Fanton
+Theme URI: https://github.com/dylanfisher/mrfanton
 Author: <a href="http://www.dylanfisher.com/">Dylan Fisher</a>
-Description: This theme is a stripped down and repurposed version of the original Sandbox Wordpress theme. It incorporates the HTML5 boilerplate, SASS and a Grunt workflow.
+Description: This theme was built with the 5andbox wordpress theme.
 Version: 2.0
 */
+@font-face {
+  font-family: 'recta';
+  src: url("fonts/Recta-regular-webfont.eot");
+  src: url("fonts/Recta-regular-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/Recta-regular-webfont.woff2") format("woff2"), url("fonts/Recta-regular-webfont.woff") format("woff"), url("fonts/Recta-regular-webfont.ttf") format("truetype"), url("fonts/Recta-regular-webfont.svg#rectaregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 .ibfix {
   font-size: 0;
   letter-spacing: -4px; }
@@ -14,12 +21,27 @@ Version: 2.0
 
 .clearfix {
   *zoom: 1; }
-  .clearfix:before,
-  .clearfix:after {
+  .clearfix:before, .clearfix:after {
     content: " ";
     display: table; }
   .clearfix:after {
     clear: both; }
+
+html {
+  font-size: 62.5%;
+  font-family: "recta", sans-serif; }
+
+body {
+  font-size: 28px;
+  font-size: 2.8rem;
+  line-height: 32px;
+  line-height: 3.2rem; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 28px;
+  font-size: 2.8rem;
+  font-weight: normal;
+  margin: 0; }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
@@ -27,14 +49,6 @@ Version: 2.0
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-html {
-  font-family: sans-serif;
-  /* 1 */
-  -ms-text-size-adjust: 100%;
-  /* 2 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */ }
-
 /**
  * Remove default margin.
  */
@@ -133,10 +147,6 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0; }
-
 /**
  * Address styling not present in IE 8/9.
  */
@@ -260,7 +270,8 @@ select {
  *    `input` and others.
  */
 button,
-html input[type="button"], input[type="reset"],
+html input[type="button"],
+input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
@@ -390,10 +401,6 @@ select,
 textarea {
   color: #000; }
 
-body {
-  font-size: 1em;
-  line-height: 1.4; }
-
 hr {
   display: block;
   height: 1px;
@@ -420,10 +427,6 @@ textarea {
 
 div {
   vertical-align: top; }
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  padding: 0; }
 
 .block {
   display: block; }
@@ -648,6 +651,23 @@ h1, h2, h3, h4, h5, h6 {
   .chromeframe p {
     max-width: 680px;
     margin: 1em auto; }
+
+a {
+  color: #000;
+  text-decoration: none; }
+
+.blank-link {
+  text-decoration: none; }
+
+.default-link {
+  text-decoration: underline; }
+
+.wrapper {
+  padding: 20px 30px;
+  padding: 2rem 3rem; }
+
+.site-title {
+  text-transform: uppercase; }
 
 .alignnone {
   margin: 5px 20px 20px 0; }

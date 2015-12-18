@@ -1,3 +1,11 @@
 //
 // Main
 //
+
+.wrapper {
+  @include rem(padding, 20px 30px);
+}
+
+.site-title {
+  text-transform: uppercase;
+}

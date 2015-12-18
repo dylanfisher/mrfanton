@@ -1,0 +1,19 @@
+//
+// Typography
+//
+
+html {
+  font-size: 62.5%;
+  font-family: $recta-regular;
+}
+
+body {
+  @include rem(font-size, $regular-font-size);
+  @include rem(line-height, $regular-font-line-height);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @include rem(font-size, $regular-font-size);
+  font-weight: normal;
+  margin: 0;
+}

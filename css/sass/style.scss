@@ -6,16 +6,23 @@ Description: This theme was built with the 5andbox wordpress theme.
 Version: 2.0
 */
 
+// Core (these shouldn't output any CSS)
+@import "core/fonts";
+
 // Modules (these shouldn't output any CSS)
 @import "modules/variables";
 @import "modules/extends";
 @import "modules/mixins";
 
 // Base
+@import "base/typography";
 @import "base/normalize";
 @import "base/base_styles";
 @import "base/helper_classes";
 @import "base/chromeframe";
+
+// UI
+@import "ui/links";
 
 // Partials
 @import "partials/main";
