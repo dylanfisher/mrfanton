@@ -1,0 +1,28 @@
+/*!
+Theme Name: Mr. Fanton
+Theme URI: https://github.com/dylanfisher/mrfanton
+Author: <a href="http://www.dylanfisher.com/">Dylan Fisher</a>
+Description: This theme was built with the 5andbox wordpress theme.
+Version: 2.0
+*/
+
+// Modules (these shouldn't output any CSS)
+@import "modules/variables";
+@import "modules/extends";
+@import "modules/mixins";
+
+// Base
+@import "base/normalize";
+@import "base/base_styles";
+@import "base/helper_classes";
+@import "base/chromeframe";
+
+// Partials
+@import "partials/main";
+
+// Vendor
+@import "vendor/wordpress_core";
+@import "vendor/nprogress";
+
+// Media Queries
+@import "media_queries/media_queries";
