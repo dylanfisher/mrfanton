@@ -29,6 +29,10 @@ add_action( 'wp_enqueue_scripts', 'sandbox_enqueue_scripts' );
 // Enables
 //
 
+if( function_exists('acf_add_options_page') ) {
+  acf_add_options_page();
+}
+
 // Custom menus
 add_theme_support('menus');
 
@@ -99,6 +103,15 @@ function sandbox_is_local() {
     return true;
   } else {
     return false;
+  }
+}
+
+function sandbox_get_id_by_slug($page_slug) {
+  $page = get_page_by_path($page_slug);
+  if ($page) {
+    return $page->ID;
+  } else {
+    return null;
   }
 }
 

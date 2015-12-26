@@ -19,6 +19,7 @@ Version: 2.0
 @import "base/normalize";
 @import "base/base_styles";
 @import "base/helper_classes";
+@import "base/grid";
 @import "base/chromeframe";
 
 // UI
@@ -26,6 +27,8 @@ Version: 2.0
 
 // Partials
 @import "partials/main";
+@import "partials/home";
+@import "partials/single";
 
 // Vendor
 @import "vendor/wordpress_core";

@@ -77,3 +77,19 @@
     #{$property}: $rem;
   }
 }
+
+@mixin single-project {
+  .information-link-wrapper,
+  .home__post-title-wrapper:not(.active) {
+    display: none;
+  }
+
+  .home__post-image {
+    position: absolute;
+  }
+
+  .controls,
+  .ajax-wrapper {
+    display: block;
+  }
+}

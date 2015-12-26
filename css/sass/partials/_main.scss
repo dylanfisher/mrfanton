@@ -2,10 +2,35 @@
 // Main
 //
 
+html.transitioning {
+  overflow: hidden;
+}
+
+body {
+  transition: background $tt;
+}
+
 .wrapper {
   @include rem(padding, 20px 30px);
 }
 
 .site-title {
   text-transform: uppercase;
+}
+
+.information-wrapper {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  @include rem(padding-left, 30px);
+  width: 100%;
+  background: #000;
+  height: 100vh;
+  overflow: auto;
+}
+
+.information-open {
+  .information-wrapper {
+    display: block;
+  }
 }

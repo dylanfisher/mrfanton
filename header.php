@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" data-root-url="<?php bloginfo('url') ?>/">
 <head>
   <meta charset="utf-8">
 <!--
@@ -34,7 +34,16 @@ Website developed by Dylan Fisher
   <script src="<?php echo get_bloginfo('template_url'); ?>/js/modernizr.custom.15544.js"></script>
   <?php wp_head() // For plugins ?>
 </head>
-<body>
+
+<?php
+  $body_classes = array();
+  is_single() ? array_push($body_classes, 'single-project-loaded') : '';
+  if(is_single()) {
+    get_field('color_scheme') == 'dark' ? array_push($body_classes, 'color-scheme--dark') : array_push($body_classes, 'color-scheme--light');
+  }
+?>
+
+<body class="<?php echo join(' ', $body_classes); ?>">
   <!--[if lt IE 9]>
     <div class="chromeframe">
       <p>You are using an <strong>outdated</strong> browser.</p>
@@ -46,5 +55,14 @@ Website developed by Dylan Fisher
       <h1 class="site-title">
         <a href="<?php bloginfo('url') ?>/" title="<?php echo esc_html( bloginfo('name'), 1 ) ?>" rel="home"><?php bloginfo('name') ?></a>
       </h1>
-      <nav><?php wp_nav_menu(); ?></nav>
     </header>
+
+    <div class="controls">
+      <span class="control-button close-button">Close</span>
+      <span class="control-button read-button">Read</span>
+
+      <span class="control-button previous-button"><?php previous_post_link('<span class="previous-button__post-name">%link</span>Previous'); ?></span>
+      <span class="control-button next-button"><?php next_post_link('<span class="next-button__post-name">%link</span>Next'); ?></span>
+
+      <span class="control-button down-button">Down</span>
+    </div>

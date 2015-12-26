@@ -3,6 +3,7 @@
 //
 
 // Colors
+$dark-gray: #1D1D1E;
 
 // Fonts stacks
 $recta-regular: 'recta', sans-serif;
@@ -25,5 +26,6 @@ $break-tab  : 1023px;
 $break-hand : 767px;
 
 // Transitions
-$tt: 0.2s;
-$tt-long: 0.6s;
+$tt: 0.4s;
+$tt-long: 0.8s;
+$easing: cubic-bezier(0.23, 1, 0.32, 1);
