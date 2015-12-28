@@ -8,70 +8,50 @@
   }
 }
 
-// Controls
+.post__images {
+  @include rem(margin-left, -15px);
+  @include rem(margin-right, -15px);
 
-.color-scheme--dark {
-  background: $dark-gray;
+  img {
+    @include rem(padding, 15px);
+  }
+}
 
-  .controls {
+.post__information-wrapper {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background: #000;
+
+  &,
+  a {
     color: #fff;
   }
+
+  .showing-post-information & {
+    display: block;
+
+    .post__information {
+
+    }
+  }
 }
 
-.controls {
-  display: none;
+.showing-post-information {
+  height: 100vh;
+  overflow: hidden;
 }
 
-.control-button {
-  position: fixed;
-  z-index: 10;
-  cursor: pointer;
-}
-
-.close-button,
-.read-button {
-  top: 20px;
-}
-
-.close-button {
-  left: 50%;
-}
-
-.read-button {
-  left: 60%;
-}
-
-.previous-button,
-.next-button,
-.down-button {
-  bottom: 0;
-}
-
-.previous-button {
+.post__information {
+  position: absolute;
+  top: 0;
   left: 0;
-}
-
-.next-button {
-  right: 0;
-}
-
-.down-button {
-  left: 50%;
-}
-
-.previous-button__post-name,
-.next-button__post-name {
-  display: none;
-}
-
-.previous-button:hover {
-  .previous-button__post-name {
-    display: block;
-  }
-}
-
-.next-button:hover {
-  .next-button__post-name {
-    display: block;
-  }
+  width: 100%;
+  height: 100%;
+  padding: 2em 3rem 0;
+  overflow: auto;
 }

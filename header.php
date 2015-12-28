@@ -41,6 +41,7 @@ Website developed by Dylan Fisher
   if(is_single()) {
     get_field('color_scheme') == 'dark' ? array_push($body_classes, 'color-scheme--dark') : array_push($body_classes, 'color-scheme--light');
   }
+  is_page('information') ? array_push($body_classes, 'information-open') : '';
 ?>
 
 <body class="<?php echo join(' ', $body_classes); ?>">
@@ -54,6 +55,7 @@ Website developed by Dylan Fisher
     <div class="controls">
       <span class="control-button close-button">Close</span>
       <span class="control-button read-button">Read</span>
+      <span class="control-button images-button">Images</span>
 
       <span class="control-button previous-button"><?php previous_post_link('<span class="previous-button__post-name">%link</span>Previous'); ?></span>
       <span class="control-button next-button"><?php next_post_link('<span class="next-button__post-name">%link</span>Next'); ?></span>

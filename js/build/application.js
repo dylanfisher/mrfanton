@@ -64,7 +64,7 @@ History.Adapter.bind(window,'statechange',function(){ // Note: We are using stat
   $(document).on('click', '.close-button', function() {
     History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
 
-    $('body').addClass('closing').removeClass('single-project-loaded');
+    $('body').addClass('closing').removeClass('single-project-loaded showing-post-information');
     $('html').addClass('transitioning');
 
     $('#ajax-wrapper').transition({x: $(window).width()}, ttLong, easing, function() {
@@ -97,9 +97,9 @@ History.Adapter.bind(window,'statechange',function(){ // Note: We are using stat
 
     History.pushState({stateUrl: url}, title, url);
 
+    $('body').addClass('information-open');
     $wrapper.transition({y: '-100vh'}, ttLong, easing, function() {
       $('html').removeClass('transitioning');
-      $('body').addClass('information-open');
     });
 
     e.preventDefault();
@@ -115,9 +115,29 @@ History.Adapter.bind(window,'statechange',function(){ // Note: We are using stat
     var $wrapper = $(this).closest('.information-link-wrapper');
     $wrapper.removeClass('active');
     $('html').addClass('transitioning');
+    $('body').removeClass('information-open');
     $wrapper.transition({y: '0'}, ttLong, easing, function() {
       $('html').removeClass('transitioning');
-      $('body').removeClass('information-open');
+    });
+  });
+
+  //
+  // OPEN POST INFORMATION
+  //
+
+  $(document).on('click', '.read-button', function() {
+    $('body').addClass('showing-post-information');
+    $('.post__information').scrollTop(0);
+    $('.post__information-wrapper').css({opacity: 0}).transition({opacity: 1}, ttLong);
+  });
+
+  //
+  // CLOSE POST INFORMATION
+  //
+
+  $(document).on('click', '.images-button', function() {
+    $('.post__information-wrapper').transition({opacity: 0}, ttLong, function() {
+      $('body').removeClass('showing-post-information');
     });
   });
 

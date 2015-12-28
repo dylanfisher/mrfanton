@@ -1,0 +1,102 @@
+// Controls
+
+.color-scheme--dark {
+  background: $dark-gray;
+
+  .controls,
+  .site-title {
+    color: #fff;
+  }
+}
+
+.showing-post-information {
+  .controls {
+    color: #fff;
+  }
+}
+
+.controls {
+  display: none;
+}
+
+.control-button {
+  position: fixed;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.close-button,
+.read-button,
+.images-button,
+.information__close-button {
+  top: 20px;
+
+  &:hover {
+    opacity: 0;
+  }
+}
+
+.close-button,
+.information__close-button {
+  left: 50%;
+}
+
+.read-button,
+.images-button {
+  left: 60%;
+}
+
+.information__close-button {
+  top: 72px;
+  margin-left: 3rem;
+}
+
+.read-button {
+  .showing-post-information & {
+    display: none;
+  }
+}
+
+.images-button {
+  display: none;
+
+  .showing-post-information &  {
+    display: block;
+  }
+}
+
+.previous-button,
+.next-button,
+.down-button {
+  bottom: 0;
+  z-index: 9;
+}
+
+.previous-button {
+  left: 0;
+}
+
+.next-button {
+  right: 0;
+}
+
+.down-button {
+  left: 50%;
+}
+
+.previous-button__post-name,
+.next-button__post-name {
+  display: none;
+}
+
+.previous-button:hover {
+  .previous-button__post-name {
+    display: block;
+  }
+}
+
+.next-button:hover {
+  .next-button__post-name {
+    display: block;
+  }
+}

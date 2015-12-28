@@ -1,7 +1,7 @@
 <nav class="home-page-nav one-half">
 
   <h1>
-    <a class="site-title" href="<?php bloginfo('url') ?>/" title="<?php echo esc_html( bloginfo('name'), 1 ) ?>" rel="home">
+    <a class="site-title" href="<?php bloginfo('url') ?>/" rel="home">
       <span class="site-title__text">
         <?php bloginfo('name') ?>
       </span>
@@ -64,12 +64,13 @@
     ?>
 
     <div class="information-column--1 one-half">
+      <p>&nbsp;</p>
       <?php echo $column_1; ?>
     </div>
 
     <div class="information-column--2 one-half">
       <p class="information__close-button-wrapper">
-        <span class="information__close-button">Close</span>
+        <span class="information__close-button control-button">Close</span>
         <br>
         <br>
       </p>

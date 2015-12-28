@@ -688,19 +688,19 @@ body {
 .information-open .information-wrapper {
   display: block; }
 
-.home-page-nav {
-  padding-right: 100px; }
+.information-open .site-title {
+  color: #fff; }
 
-body:not(.closing) .home__post-title-wrapper:not(.active):hover {
-  text-align: right; }
-  body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-title {
-    display: none; }
-  body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-category {
-    display: inline; }
-  body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-image {
-    -webkit-transform: translate(-50%, 0);
-            transform: translate(-50%, 0);
-    z-index: 2; }
+body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-title {
+  display: none; }
+
+body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-category {
+  display: inline; }
+
+body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-image {
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  z-index: 2; }
 
 .home__post-title-link {
   display: block; }
@@ -779,23 +779,81 @@ body.closing .ajax-wrapper {
 .site-title__hover-text {
   display: none; }
 
+.home-page-nav {
+  padding-right: 100px;
+  margin-top: 32px;
+  margin-top: 3.2rem; }
+
 .site-title {
-  display: block; }
-  .site-title:hover {
-    text-align: right; }
-    .site-title:hover .site-title__text {
-      display: none; }
-    .site-title:hover .site-title__hover-text {
-      display: inline; }
+  position: fixed;
+  margin-top: -32px;
+  margin-top: -3.2rem;
+  display: block;
+  z-index: 10; }
+  .site-title:hover .site-title__text {
+    display: none; }
+  .site-title:hover .site-title__hover-text {
+    display: inline; }
 
 .single .home__post-title-wrapper.active .home__post-image {
   -webkit-transform: translate(-100%, 0);
           transform: translate(-100%, 0); }
 
+.post__images {
+  margin-left: -15px;
+  margin-left: -1.5rem;
+  margin-right: -15px;
+  margin-right: -1.5rem; }
+  .post__images img {
+    padding: 15px;
+    padding: 1.5rem; }
+
+.post__information-wrapper {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background: #000; }
+  .post__information-wrapper,
+  .post__information-wrapper a {
+    color: #fff; }
+  .showing-post-information .post__information-wrapper {
+    display: block; }
+
+.showing-post-information {
+  height: 100vh;
+  overflow: hidden; }
+
+.post__information {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2em 3rem 0;
+  overflow: auto; }
+
+.indented-character + br {
+  display: none; }
+
+.indented-character__character,
+.indented-character__content {
+  display: inline-block; }
+
+.indented-character__character {
+  min-width: 45px; }
+
 .color-scheme--dark {
   background: #1D1D1E; }
-  .color-scheme--dark .controls {
+  .color-scheme--dark .controls,
+  .color-scheme--dark .site-title {
     color: #fff; }
+
+.showing-post-information .controls {
+  color: #fff; }
 
 .controls {
   display: none; }
@@ -806,19 +864,41 @@ body.closing .ajax-wrapper {
   cursor: pointer; }
 
 .close-button,
-.read-button {
+.read-button,
+.images-button,
+.information__close-button {
   top: 20px; }
+  .close-button:hover,
+  .read-button:hover,
+  .images-button:hover,
+  .information__close-button:hover {
+    opacity: 0; }
 
-.close-button {
+.close-button,
+.information__close-button {
   left: 50%; }
 
-.read-button {
+.read-button,
+.images-button {
   left: 60%; }
+
+.information__close-button {
+  top: 72px;
+  margin-left: 3rem; }
+
+.showing-post-information .read-button {
+  display: none; }
+
+.images-button {
+  display: none; }
+  .showing-post-information .images-button {
+    display: block; }
 
 .previous-button,
 .next-button,
 .down-button {
-  bottom: 0; }
+  bottom: 0;
+  z-index: 9; }
 
 .previous-button {
   left: 0; }
@@ -838,16 +918,6 @@ body.closing .ajax-wrapper {
 
 .next-button:hover .next-button__post-name {
   display: block; }
-
-.indented-character + br {
-  display: none; }
-
-.indented-character__character,
-.indented-character__content {
-  display: inline-block; }
-
-.indented-character__character {
-  min-width: 45px; }
 
 .alignnone {
   margin: 5px 20px 20px 0; }

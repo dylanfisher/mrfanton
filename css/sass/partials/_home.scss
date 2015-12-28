@@ -1,11 +1,5 @@
-.home-page-nav {
-  padding-right: 100px;
-}
-
 body:not(.closing) .home__post-title-wrapper:not(.active) {
   &:hover {
-    text-align: right;
-
     .home__post-title {
       display: none;
     }
@@ -114,12 +108,18 @@ body.closing {
   display: none;
 }
 
+.home-page-nav {
+  padding-right: 100px;
+  @include rem(margin-top, $regular-font-line-height);
+}
+
 .site-title {
+  position: fixed;
+  @include rem(margin-top, -$regular-font-line-height);
   display: block;
+  z-index: 10;
 
   &:hover {
-    text-align: right;
-
     .site-title__text {
       display: none;
     }
