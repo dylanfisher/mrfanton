@@ -51,12 +51,6 @@ Website developed by Dylan Fisher
     </div>
   <![endif]-->
   <div <?php body_class('wrapper') ?>>
-    <header>
-      <h1 class="site-title">
-        <a href="<?php bloginfo('url') ?>/" title="<?php echo esc_html( bloginfo('name'), 1 ) ?>" rel="home"><?php bloginfo('name') ?></a>
-      </h1>
-    </header>
-
     <div class="controls">
       <span class="control-button close-button">Close</span>
       <span class="control-button read-button">Read</span>

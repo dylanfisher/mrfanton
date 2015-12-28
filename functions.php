@@ -207,14 +207,13 @@ add_filter('wp_nav_menu', 'sandbox_add_slug_class_to_menu_item');
 // Shortcode functions
 //
 
-// function sandbox_example_shortcode( $atts, $content = null ) {
-//   $a = shortcode_atts( array(
-//       'name' => 'Name of staff',
-//       'title' => 'Title of staff'
-//   ), $atts );
+function sandbox_indented_shortcode( $atts, $content = null ) {
+  $a = shortcode_atts( array(
+      'character' => ' '
+  ), $atts );
 
-//   return '<div class="staff-member"><div class="staff-member-name">'.$a['name'].'</div><div class="staff-member-title">'.$a['title'].'</div><div class="staff-member-bio">'.$content.'</div><div class="staff-member-bio-link">View Bio</div></div>';
-// }
-// add_shortcode( 'example', 'sandbox_example_shortcode' );
+  return '<div class="indented-character"><div class="indented-character__character">'.$a['character'].'</div><div class="indented-character__content">'.$content.'</div></div>';
+}
+add_shortcode( 'indented', 'sandbox_indented_shortcode' );
 
 ?>

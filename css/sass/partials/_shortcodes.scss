@@ -1,0 +1,16 @@
+// Shortcodes
+
+.indented-character {
+  & + br {
+    display: none;
+  }
+}
+
+.indented-character__character,
+.indented-character__content {
+  display: inline-block;
+}
+
+.indented-character__character {
+  min-width: 45px;
+}

@@ -1,4 +1,16 @@
 <nav class="home-page-nav one-half">
+
+  <h1>
+    <a class="site-title" href="<?php bloginfo('url') ?>/" title="<?php echo esc_html( bloginfo('name'), 1 ) ?>" rel="home">
+      <span class="site-title__text">
+        <?php bloginfo('name') ?>
+      </span>
+      <span class="site-title__hover-text">
+        <?php the_field('fanton_rollover', 'option'); ?>
+      </span>
+    </a>
+  </h1>
+
   <?php
     if(is_single()) {
       $single_post = $post;

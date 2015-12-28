@@ -776,6 +776,18 @@ body.closing .ajax-wrapper {
   display: none;
   margin-top: 100vh; }
 
+.site-title__hover-text {
+  display: none; }
+
+.site-title {
+  display: block; }
+  .site-title:hover {
+    text-align: right; }
+    .site-title:hover .site-title__text {
+      display: none; }
+    .site-title:hover .site-title__hover-text {
+      display: inline; }
+
 .single .home__post-title-wrapper.active .home__post-image {
   -webkit-transform: translate(-100%, 0);
           transform: translate(-100%, 0); }
@@ -826,6 +838,16 @@ body.closing .ajax-wrapper {
 
 .next-button:hover .next-button__post-name {
   display: block; }
+
+.indented-character + br {
+  display: none; }
+
+.indented-character__character,
+.indented-character__content {
+  display: inline-block; }
+
+.indented-character__character {
+  min-width: 45px; }
 
 .alignnone {
   margin: 5px 20px 20px 0; }

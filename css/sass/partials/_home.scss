@@ -108,3 +108,24 @@ body.closing {
   display: none;
   margin-top: 100vh;
 }
+
+// Fanton site title rollover
+.site-title__hover-text {
+  display: none;
+}
+
+.site-title {
+  display: block;
+
+  &:hover {
+    text-align: right;
+
+    .site-title__text {
+      display: none;
+    }
+
+    .site-title__hover-text {
+      display: inline;
+    }
+  } // :hover
+}
