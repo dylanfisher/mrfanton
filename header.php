@@ -38,10 +38,14 @@ Website developed by Dylan Fisher
 <?php
   $body_classes = array();
   is_single() ? array_push($body_classes, 'single-project-loaded') : '';
+
   if(is_single()) {
     get_field('color_scheme') == 'dark' ? array_push($body_classes, 'color-scheme--dark') : array_push($body_classes, 'color-scheme--light');
   }
+
   is_page('information') ? array_push($body_classes, 'information-open') : '';
+
+  isset($_GET['grid']) ? array_push($body_classes, 'grid-mode') : array_push($body_classes, 'list-mode');
 ?>
 
 <body class="<?php echo join(' ', $body_classes); ?>">

@@ -1,5 +1,7 @@
 body:not(.closing) .home__post-title-wrapper:not(.active) {
   &:hover {
+    text-align: right;
+
     .home__post-title {
       display: none;
     }
@@ -110,7 +112,12 @@ body.closing {
 
 .home-page-nav {
   padding-right: 100px;
+  padding-bottom: 45px;
   @include rem(margin-top, $regular-font-line-height);
+
+  .grid-mode & {
+    @include rem(margin-top, $regular-font-line-height * 2);
+  }
 }
 
 .site-title {
@@ -119,7 +126,13 @@ body.closing {
   display: block;
   z-index: 10;
 
+  .grid-mode & {
+    @include rem(margin-top, -$regular-font-line-height * 2);
+  }
+
   &:hover {
+    text-align: right;
+
     .site-title__text {
       display: none;
     }
@@ -128,4 +141,59 @@ body.closing {
       display: inline;
     }
   } // :hover
+}
+
+//
+// GRID MODE
+//
+
+.grid-mode {
+  .home-page-nav {
+    padding-right: 0;
+    width: 100%;
+  }
+}
+
+.grid-item {
+  text-align: center;
+
+  &:hover {
+    img,
+    .grid-item__title {
+      opacity: 0;
+    }
+
+    .grid-item__category {
+      opacity: 1;
+    }
+  }
+
+  img {
+    margin-bottom: 10px;
+  }
+}
+
+.grid-item {
+  @include rem(padding-bottom, 30px);
+}
+
+.grid-item:nth-child(3n) {
+  @include rem(padding-right, 15px);
+}
+
+.grid-item:nth-child(3n+1) {
+  @include rem(padding-left, 15px);
+  @include rem(padding-right, 15px);
+}
+
+.grid-item:nth-child(3n+2) {
+  @include rem(padding-left, 15px);
+}
+
+.grid-item__category {
+  opacity: 0;
+}
+
+.ajax-wrapper.grid-mode-active {
+
 }

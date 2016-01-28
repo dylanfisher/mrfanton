@@ -2,7 +2,15 @@
   @extend %clearfix;
 }
 
+.one-third,
+.one-half {
+  float: left;
+}
+
+.one-third {
+  width: 33.33%;
+}
+
 .one-half {
   width: 50%;
-  float: left;
 }

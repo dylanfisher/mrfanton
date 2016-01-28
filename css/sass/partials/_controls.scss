@@ -28,7 +28,9 @@
 .close-button,
 .read-button,
 .images-button,
-.information__close-button {
+.information__close-button,
+.grid-button,
+.list-button {
   top: 20px;
 
   &:hover {
@@ -42,13 +44,18 @@
 }
 
 .read-button,
-.images-button {
+.images-button{
   left: 60%;
 }
 
 .information__close-button {
+  display: none;
   top: 72px;
   margin-left: 3rem;
+
+  .information-open & {
+    display: block;
+  }
 }
 
 .read-button {
@@ -63,6 +70,12 @@
   .showing-post-information &  {
     display: block;
   }
+}
+
+.grid-button,
+.list-button {
+  left: 80%;
+  z-index: 1;
 }
 
 .previous-button,

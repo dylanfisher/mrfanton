@@ -45,9 +45,14 @@ History.Adapter.bind(window,'statechange',function(){ // Note: We are using stat
     $wrapper.addClass('active');
     $('html').addClass('transitioning');
 
-    $wrapper.find('.home__post-image').transition({x: '-100%'}, ttLong, easing, function() {
+    if($link.hasClass('home__post-title-link--grid-mode')) {
+      $('#ajax-wrapper').addClass('grid-mode-active');
       $('html').removeClass('transitioning');
-    });
+    } else {
+      $wrapper.find('.home__post-image').transition({x: '-100%'}, ttLong, easing, function() {
+        $('html').removeClass('transitioning');
+      });
+    }
 
     History.pushState({stateUrl: url}, title, url);
 
