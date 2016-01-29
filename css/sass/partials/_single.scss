@@ -8,6 +8,12 @@
   }
 }
 
+.single-project-loaded {
+  .home__post-title-link--grid-mode {
+    cursor: default;
+  }
+}
+
 .post__images {
   @include rem(margin-left, -15px);
   @include rem(margin-right, -15px);
@@ -54,4 +60,12 @@
   height: 100%;
   padding: 2em 3rem 0;
   overflow: auto;
+}
+
+.post__information__content {
+  @include rem(padding-right, 25px);
+}
+
+.post__information__credits {
+  @include rem(padding-left, 25px);
 }

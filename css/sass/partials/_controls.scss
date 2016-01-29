@@ -9,14 +9,30 @@
   }
 }
 
+.color-scheme--light,
+.color-scheme--dark {
+  .controls {
+    display: block !important;
+  }
+}
+
 .showing-post-information {
   .controls {
     color: #fff;
   }
 }
 
+.post-information-transition-out {
+  .showing-post-information.color-scheme--light {
+    .controls {
+      color: #000;
+    }
+  }
+}
+
 .controls {
   display: none;
+  transition: all $tt-long;
 }
 
 .control-button {

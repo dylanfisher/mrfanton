@@ -7,13 +7,21 @@ html {
   font-family: $recta-regular;
 }
 
-body {
-  @include rem(font-size, $regular-font-size);
-  @include rem(line-height, $regular-font-line-height);
+body,
+h1, h2, h3, h4, h5, h6 {
+  font-size: 2.3vw;
+  line-height: 2.7vw;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @include rem(font-size, $regular-font-size);
   font-weight: normal;
   margin: 0;
+}
+
+@include break(hand) {
+  body,
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 5.5vw;
+    line-height: 6.5vw;
+  }
 }

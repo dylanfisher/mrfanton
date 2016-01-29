@@ -88,6 +88,16 @@
     position: absolute;
   }
 
+  .home__post-title-wrapper--grid.active {
+    .home__post-image--grid {
+      opacity: 1;
+    }
+  }
+
+  .home__post-grid-image {
+    opacity: 0;
+  }
+
   .controls,
   .ajax-wrapper {
     display: block;

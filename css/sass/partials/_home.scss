@@ -197,3 +197,17 @@ body.closing {
 .ajax-wrapper.grid-mode-active {
 
 }
+
+.home__post-image--grid {
+  display: none;
+  opacity: 0;
+  left: 0;
+  transition: opacity $tt;
+}
+
+.home__post-title-wrapper--grid.active,
+.single-project-closing .home__post-title-wrapper--grid {
+  .home__post-image--grid {
+    display: block;
+  }
+}

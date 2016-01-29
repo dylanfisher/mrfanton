@@ -31,17 +31,20 @@ html {
   font-size: 62.5%;
   font-family: "recta", sans-serif; }
 
-body {
-  font-size: 28px;
-  font-size: 2.8rem;
-  line-height: 32px;
-  line-height: 3.2rem; }
+body,
+h1, h2, h3, h4, h5, h6 {
+  font-size: 2.3vw;
+  line-height: 2.7vw; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 28px;
-  font-size: 2.8rem;
   font-weight: normal;
   margin: 0; }
+
+@media (max-width: 767px) {
+  body,
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 5.5vw;
+    line-height: 6.5vw; } }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
@@ -769,6 +772,12 @@ body.single-project-loaded .home__post-title-wrapper:not(.active) {
 body.single-project-loaded .home__post-image {
   position: absolute; }
 
+body.single-project-loaded .home__post-title-wrapper--grid.active .home__post-image--grid {
+  opacity: 1; }
+
+body.single-project-loaded .home__post-grid-image {
+  opacity: 0; }
+
 body.single-project-loaded .controls,
 body.single-project-loaded .ajax-wrapper {
   display: block; }
@@ -847,8 +856,21 @@ body.closing .ajax-wrapper {
 .grid-item__category {
   opacity: 0; }
 
+.home__post-image--grid {
+  display: none;
+  opacity: 0;
+  left: 0;
+  transition: opacity 0.4s; }
+
+.home__post-title-wrapper--grid.active .home__post-image--grid,
+.single-project-closing .home__post-title-wrapper--grid .home__post-image--grid {
+  display: block; }
+
 .single .home__post-title-wrapper.active .home__post-image {
   transform: translate(-100%, 0); }
+
+.single-project-loaded .home__post-title-link--grid-mode {
+  cursor: default; }
 
 .post__images {
   margin-left: -15px;
@@ -887,6 +909,14 @@ body.closing .ajax-wrapper {
   padding: 2em 3rem 0;
   overflow: auto; }
 
+.post__information__content {
+  padding-right: 25px;
+  padding-right: 2.5rem; }
+
+.post__information__credits {
+  padding-left: 25px;
+  padding-left: 2.5rem; }
+
 .indented-character + br {
   display: none; }
 
@@ -903,11 +933,19 @@ body.closing .ajax-wrapper {
   .color-scheme--dark .site-title {
     color: #fff; }
 
+.color-scheme--light .controls,
+.color-scheme--dark .controls {
+  display: block !important; }
+
 .showing-post-information .controls {
   color: #fff; }
 
+.post-information-transition-out .showing-post-information.color-scheme--light .controls {
+  color: #000; }
+
 .controls {
-  display: none; }
+  display: none;
+  transition: all 0.8s; }
 
 .control-button {
   position: fixed;

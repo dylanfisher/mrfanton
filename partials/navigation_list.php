@@ -2,7 +2,7 @@
   $active_class = $single_post && $single_post == $post ? 'active' : '';
 
   echo '<div class="home__post-title-wrapper '.$active_class.'">';
-    echo '<a class="home__post-title-link" href="'.get_permalink().'" data-post-id="'.$post->ID.'" data-title="'.get_the_title().'">';
+    echo '<a class="home__post-title-link" href="'.get_permalink().'" data-post-id="'.$post->ID.'" data-title="'.get_the_title().'" data-color-scheme="'.get_field('color_scheme').'">';
       echo '<div class="home__post-title">';
         the_title();
       echo '</div>';
