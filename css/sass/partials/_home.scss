@@ -122,7 +122,7 @@ body.closing {
 
 .site-title {
   position: fixed;
-  @include rem(margin-top, -$regular-font-line-height);
+  margin-top: -1em;
   display: block;
   z-index: 10;
 

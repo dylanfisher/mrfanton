@@ -12,6 +12,7 @@ Fanton.homeUrl = $('html').attr('data-root-url');
 Fanton.tt      = 400;
 Fanton.ttLong  = 800;
 Fanton.easing  = 'cubic-bezier(0.23, 1, 0.32, 1)';
+Fanton.stateInitiated = false;
 
 // Bind to StateChange Event
 History.Adapter.bind(window, 'statechange', function() { // Note: We are using statechange instead of popstate
@@ -24,11 +25,17 @@ History.Adapter.bind(window, 'statechange', function() { // Note: We are using s
       '.information__close-button'
       ];
     $(closeButtons.join(',')).trigger('click');
-  } else if(Fanton.state.data.stateUrl && $('.home-page-nav a[href="'+Fanton.state.data.stateUrl+'"]').length) {
-    $('.home-page-nav a[href="'+Fanton.state.data.stateUrl+'"]').trigger('click');
-  } else if (Fanton.state.title == 'Information') {
-    $('.information-link').trigger('click');
+  } else {
+    if(Fanton.stateInitiated) return;
+
+    if(Fanton.state.data.stateUrl && $('.home-page-nav a[href="'+Fanton.state.data.stateUrl+'"]').length) {
+      $('.home-page-nav a[href="'+Fanton.state.data.stateUrl+'"]').trigger('click');
+    } else if (Fanton.state.title == 'Information') {
+      $('.information-link').trigger('click');
+    }
   }
+
+  Fanton.stateInitiated = false;
 });
 
 //
@@ -39,6 +46,7 @@ $(document).on('click', '.home__post-title-link', function(e) {
   e.preventDefault();
 
   if(Fanton.transitionInProgress()) return;
+  Fanton.stateInitiated = true;
   if( $(this).hasClass('active') || ($('body').hasClass('single-project-loaded') && $(this).hasClass('home__post-title-link--grid-mode')) ) return;
   console.log('Open project');
 
@@ -78,6 +86,7 @@ $(document).on('click', '.home__post-title-link', function(e) {
 
 $(document).on('click', '.close-button', function() {
   if(Fanton.transitionInProgress()) return;
+  Fanton.stateInitiated = true;
   console.log('Close project');
 
   History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
@@ -116,6 +125,7 @@ $(document).on('click', '.close-button', function() {
 
 $(document).on('click', '.information-link', function(e) {
   if(Fanton.transitionInProgress()) return;
+  Fanton.stateInitiated = true;
   console.log('Open information');
 
   var $wrapper = $(this).closest('.information-link-wrapper');
@@ -141,6 +151,7 @@ $(document).on('click', '.information-link', function(e) {
 
 $(document).on('click', '.information__close-button', function() {
   if(Fanton.transitionInProgress()) return;
+  Fanton.stateInitiated = true;
   console.log('Close information');
 
   History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
@@ -160,6 +171,7 @@ $(document).on('click', '.information__close-button', function() {
 
 $(document).on('click', '.read-button', function() {
   if(Fanton.transitionInProgress()) return;
+  Fanton.stateInitiated = true;
   console.log('Open post information');
 
   $('html').addClass('transitioning');
@@ -176,6 +188,7 @@ $(document).on('click', '.read-button', function() {
 
 $(document).on('click', '.images-button', function() {
   if(Fanton.transitionInProgress()) return;
+  Fanton.stateInitiated = true;
   console.log('Close post information');
 
   $('html').addClass('transitioning post-information-transition-out');

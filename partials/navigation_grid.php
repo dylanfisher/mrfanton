@@ -14,7 +14,19 @@
       <?php the_title(); ?>
     </div>
     <div class="grid-item__category">
-      TODO: add category
+      <?php
+        $cats = array();
+        foreach(wp_get_post_categories($post->ID) as $c) {
+          $cat = get_category($c);
+          array_push($cats, $cat->name);
+        }
+
+        if(sizeOf($cats) > 0) {
+          $post_categories = implode(', ',$cats);
+        }
+
+        echo $post_categories;
+      ?>
     </div>
   </a>
 </div>
