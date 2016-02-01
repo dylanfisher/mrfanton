@@ -715,6 +715,9 @@ body:not(.closing) .home__post-title-wrapper:not(.active):hover {
     transform: translate(-50%, 0);
     z-index: 2; }
 
+.home__post-title-wrapper.active .home__post-image__inner {
+  transform: translate(0, 0); }
+
 .home__post-title-link {
   display: block; }
 
@@ -722,15 +725,22 @@ body:not(.closing) .home__post-title-wrapper:not(.active):hover {
   display: none; }
 
 .home__post-image {
-  background-size: cover;
-  background-position: 50%, 50%;
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 100%;
-  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  z-index: 1; }
+  z-index: 1;
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+
+.home__post-image__inner {
+  background-size: cover;
+  background-position: 50%, 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-25%, 0);
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
 
 .information-link-wrapper {
   position: fixed;

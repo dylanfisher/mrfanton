@@ -23,7 +23,7 @@
     $image = get_field('featured_image');
     if(isset($image)) {
       $url = $image['sizes']['large'];
-      echo '<div class="home__post-image" style="background-image: url('.$url.');" ></div>';
+      echo '<div class="home__post-image"><div class="home__post-image__inner" style="background-image: url('.$url.');"></div></div>';
     }
   echo '</div>';
 ?>
