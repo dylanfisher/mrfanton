@@ -711,9 +711,13 @@ body:not(.closing) .home__post-title-wrapper:not(.active):hover {
             transform: translate(-50%, 0);
     z-index: 2; }
 
-.home__post-title-wrapper.active .home__post-image__inner {
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0); }
+.home__post-title-wrapper {
+  display: inline-block; }
+  .home__post-title-wrapper:hover {
+    width: 100%; }
+  .home__post-title-wrapper.active .home__post-image__inner {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
 
 .home__post-title-link {
   display: block; }

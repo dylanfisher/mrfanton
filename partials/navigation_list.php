@@ -26,4 +26,5 @@
       echo '<div class="home__post-image"><div class="home__post-image__inner" style="background-image: url('.$url.');"></div></div>';
     }
   echo '</div>';
+  echo '<br>';
 ?>

@@ -18,6 +18,12 @@ body:not(.closing) .home__post-title-wrapper:not(.active) {
 } // .home__post-title-wrapper
 
 .home__post-title-wrapper {
+  display: inline-block;
+
+  &:hover {
+    width: 100%;
+  }
+
   &.active {
     .home__post-image__inner {
       transform: translate(0, 0);
