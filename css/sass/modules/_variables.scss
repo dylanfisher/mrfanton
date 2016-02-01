@@ -9,8 +9,11 @@ $dark-gray: #1D1D1E;
 $recta-regular: 'recta', sans-serif;
 
 // Typography settings
-$regular-font-size: 28px;
-$regular-font-line-height: 32px;
+// $regular-font-size: 28px;
+// $regular-font-line-height: 32px;
+
+$regular-font-size: 2.3vw;
+$regular-font-line-height: 2.7vw;
 
 // Sizes
 $space-tiny   : 5px;
@@ -18,6 +21,8 @@ $space-small  : 10px;
 $space-medium : 20px;
 $space-large  : 40px;
 $space-huge   : 80px;
+
+$single-post-info-header-height: 60px;
 
 // Breakpoints
 $break-ext  : 1600px;

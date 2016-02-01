@@ -17,15 +17,17 @@
 }
 
 .showing-post-information {
-  .controls {
+  .controls,
+  .site-title {
     color: #fff;
   }
 }
 
 .post-information-transition-out {
   .showing-post-information.color-scheme--light {
-    .controls {
-      color: #000;
+    .controls,
+    .site-title {
+      color: #000 !important;
     }
   }
 }
@@ -59,9 +61,13 @@
   left: 50%;
 }
 
+.close-button {
+  padding-left: 20px;
+}
+
 .read-button,
 .images-button{
-  left: 60%;
+  left: 64%;
 }
 
 .information__close-button {
@@ -92,6 +98,10 @@
 .list-button {
   left: 80%;
   z-index: 1;
+
+  .single-project-loaded & {
+    display: none;
+  }
 }
 
 .previous-button,

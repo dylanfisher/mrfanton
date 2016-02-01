@@ -92,6 +92,8 @@ $(document).on('click', '.close-button', function() {
   $('body').addClass('closing single-project-closing').removeClass('single-project-loaded showing-post-information');
   $('html').addClass('transitioning');
 
+  $('html, body').scrollTop(0);
+
   if($('body').hasClass('grid-mode')) {
     $('#ajax-wrapper').transition({opacity: 0}, Fanton.ttLong, Fanton.easing, function() {
       $('#ajax-wrapper').empty().css('opacity', 1);

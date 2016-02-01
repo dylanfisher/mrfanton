@@ -64,8 +64,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 2em 3rem 0;
+  padding: 0 3rem 0;
   overflow: auto;
+}
+
+.post__information__content {
+  padding-top: $regular-font-line-height * 2;
+}
+
+.post__information__credits {
+  padding-top: $regular-font-line-height * 3;
 }
 
 .post__information__content {

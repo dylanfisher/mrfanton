@@ -12,9 +12,9 @@
   </h1>
 
   <?php if ( isset($_GET['grid']) ): ?>
-    <a class="grid-button control-button" href="<?php bloginfo('url') ?>/" rel="home">List</a>
+    <a class="list-button control-button" href="<?php bloginfo('url') ?>/" rel="home">List</a>
   <?php else: ?>
-    <a class="list-button control-button" href="<?php bloginfo('url') ?>/?grid" rel="home">Grid</a>
+    <a class="grid-button control-button" href="<?php bloginfo('url') ?>/?grid" rel="home">Grid</a>
   <?php endif; ?>
 
   <?php
@@ -57,12 +57,12 @@
       $column_2 = get_field('information_column_2', $information_page_id);
     ?>
 
-    <div class="information-column--1 one-half">
+    <div class="information-column--1 scroll-column scroll-column-1 one-half">
       <p>&nbsp;</p>
       <?php echo $column_1; ?>
     </div>
 
-    <div class="information-column--2 one-half">
+    <div class="information-column--2 scroll-column scroll-column-2 one-half">
       <p class="information__close-button-wrapper">
         <span class="information__close-button control-button">Close</span>
         <br>

@@ -14,3 +14,13 @@
 .one-half {
   width: 50%;
 }
+
+.scroll-column {
+  position: absolute;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.scroll-column-2 {
+  right: 0;
+}
