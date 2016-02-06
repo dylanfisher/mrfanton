@@ -34,7 +34,7 @@
 
 .controls {
   display: none;
-  transition: all $tt-long;
+  transition: opacity $tt-long;
 }
 
 .control-button {

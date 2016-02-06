@@ -7,8 +7,8 @@ Version: 2.0
 */
 @font-face {
   font-family: 'recta';
-  src: url("fonts/Recta-regular-webfont.eot");
-  src: url("fonts/Recta-regular-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/Recta-regular-webfont.woff2") format("woff2"), url("fonts/Recta-regular-webfont.woff") format("woff"), url("fonts/Recta-regular-webfont.ttf") format("truetype"), url("fonts/Recta-regular-webfont.svg#rectaregular") format("svg");
+  src: url("fonts/tt-recta.eot");
+  src: url("fonts/tt-recta.eot?#iefix") format("embedded-opentype"), url("fonts/tt-recta.woff2") format("woff2"), url("fonts/tt-recta.woff") format("woff"), url("fonts/tt-recta.ttf") format("truetype"), url("fonts/tt-recta.svg#rectaregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -29,12 +29,16 @@ Version: 2.0
 
 html {
   font-size: 62.5%;
-  font-family: "recta", sans-serif; }
+  font-family: "recta", sans-serif;
+  text-rendering: geometricPrecision; }
+  @media (max-width: 767px) {
+    html {
+      text-rendering: auto; } }
 
 body,
 h1, h2, h3, h4, h5, h6 {
-  font-size: 2.3vw;
-  line-height: 2.7vw; }
+  font-size: 1.9vw;
+  line-height: 2.4vw; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
@@ -43,8 +47,8 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 767px) {
   body,
   h1, h2, h3, h4, h5, h6 {
-    font-size: 5.5vw;
-    line-height: 6.5vw; } }
+    font-size: 3.8vw;
+    line-height: 5vw; } }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
@@ -690,11 +694,11 @@ body {
 
 .site-title {
   text-transform: uppercase;
-  transition: all 0.8s; }
+  transition: opacity 0.8s; }
 
 .information-wrapper {
   position: absolute;
-  top: 55px;
+  top: 2em;
   left: 0;
   padding-left: 30px;
   padding-left: 3rem;
@@ -826,23 +830,33 @@ body.closing .ajax-wrapper {
 .home-page-nav {
   padding-right: 100px;
   padding-bottom: 45px;
-  margin-top: 2.7vw; }
+  margin-top: 2.4vw; }
   .grid-mode .home-page-nav {
-    margin-top: 5.4vw; }
+    margin-top: 4.8vw; }
+  @media (max-width: 767px) {
+    .home-page-nav {
+      margin-top: 5vw; }
+      .grid-mode .home-page-nav {
+        margin-top: 10vw; } }
 
 .site-title {
   position: fixed;
-  margin-top: -2.7vw;
+  margin-top: -2.4vw;
   display: block;
   z-index: 10; }
   .grid-mode .site-title {
-    margin-top: -5.4vw; }
+    margin-top: -4.8vw; }
   .site-title:hover {
     text-align: right; }
     .site-title:hover .site-title__text {
       display: none; }
     .site-title:hover .site-title__hover-text {
       display: inline; }
+  @media (max-width: 767px) {
+    .site-title {
+      margin-top: -5vw; }
+      .grid-mode .site-title {
+        margin-top: -10vw; } }
 
 .grid-mode .home-page-nav {
   padding-right: 0;
@@ -942,10 +956,10 @@ body.closing .ajax-wrapper {
   overflow: auto; }
 
 .post__information__content {
-  padding-top: 5.4vw; }
+  padding-top: 4.8vw; }
 
 .post__information__credits {
-  padding-top: 8.1vw; }
+  padding-top: 7.2vw; }
 
 .post__information__content {
   padding-right: 25px;
@@ -985,7 +999,7 @@ body.closing .ajax-wrapper {
 
 .controls {
   display: none;
-  transition: all 0.8s; }
+  transition: opacity 0.8s; }
 
 .control-button {
   position: fixed;

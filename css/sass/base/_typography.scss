@@ -5,6 +5,11 @@
 html {
   font-size: 62.5%;
   font-family: $recta-regular;
+  text-rendering: geometricPrecision;
+
+  @include break(hand) {
+    text-rendering: auto;
+  }
 }
 
 body,
@@ -21,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 @include break(hand) {
   body,
   h1, h2, h3, h4, h5, h6 {
-    font-size: 5.5vw;
-    line-height: 6.5vw;
+    font-size: $hand-font-size;
+    line-height: $hand-font-line-height;
   }
 }

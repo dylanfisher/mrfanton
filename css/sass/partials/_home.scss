@@ -137,6 +137,14 @@ body.closing {
   .grid-mode & {
     margin-top: $regular-font-line-height * 2;
   }
+
+  @include break(hand) {
+    margin-top: $hand-font-line-height;
+
+    .grid-mode & {
+      margin-top: $hand-font-line-height * 2;
+    }
+  }
 }
 
 .site-title {
@@ -160,7 +168,15 @@ body.closing {
       display: inline;
     }
   } // :hover
-}
+
+  @include break(hand) {
+    margin-top: -$hand-font-line-height;
+
+    .grid-mode & {
+      margin-top: -$hand-font-line-height * 2;
+    }
+  }
+} // .site-title
 
 //
 // GRID MODE

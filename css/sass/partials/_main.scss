@@ -16,12 +16,12 @@ body {
 
 .site-title {
   text-transform: uppercase;
-  transition: all $tt-long;
+  transition: opacity $tt-long;
 }
 
 .information-wrapper {
   position: absolute;
-  top: 55px; // warning: Magic Number
+  top: 2em; // warning: Magic Number
   left: 0;
   @include rem(padding-left, 30px);
   width: 100%;
