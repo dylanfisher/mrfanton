@@ -61,8 +61,8 @@ Website developed by Dylan Fisher
       <span class="control-button read-button">Read</span>
       <span class="control-button images-button">Images</span>
 
-      <span class="control-button previous-button"><?php previous_post_link('<span class="previous-button__post-name">%link</span>Previous'); ?></span>
-      <span class="control-button next-button"><?php next_post_link('<span class="next-button__post-name">%link</span>Next'); ?></span>
+      <span class="control-button previous-button"><?php previous_post_link('<span class="previous-button__post-name">%link</span><span class="next-previous-button__post-label">'.get_template_part('images/svg/left-arrow.svg').'</span>'); ?></span>
+      <span class="control-button next-button"><?php next_post_link('<span class="next-button__post-name">%link</span><span class="next-previous-button__post-label">'.get_template_part('images/svg/right-arrow.svg').'</span>'); ?></span>
 
-      <span class="control-button down-button">Down</span>
+      <span class="control-button down-button"><?php get_template_part('images/svg/down-arrow.svg'); ?></span>
     </div>

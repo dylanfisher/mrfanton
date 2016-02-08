@@ -214,6 +214,7 @@ body.closing {
 
 .grid-item:nth-child(3n) {
   @include rem(padding-right, 15px);
+  clear: left;
 }
 
 .grid-item:nth-child(3n+1) {

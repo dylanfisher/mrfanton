@@ -5,7 +5,16 @@
 
   .controls,
   .site-title {
-    color: #fff;
+    &,
+    a {
+      color: #fff;
+    }
+  }
+
+  .previous-button,
+  .next-button,
+  .down-button {
+    stroke: #fff;
   }
 }
 
@@ -19,7 +28,10 @@
 .showing-post-information {
   .controls,
   .site-title {
-    color: #fff;
+    &,
+    a {
+      color: #fff;
+    }
   }
 }
 
@@ -107,35 +119,70 @@
 .previous-button,
 .next-button,
 .down-button {
-  bottom: 0;
+  bottom: 30px;
   z-index: 9;
+  stroke: #000;
+}
+
+.previous-button,
+.next-button {
+  width: $regular-font-size / 2;
 }
 
 .previous-button {
-  left: 0;
+  left: 15px;
 }
 
 .next-button {
-  right: 0;
+  right: 15px;
 }
 
 .down-button {
+  width: $regular-font-size * 2.25;
   left: 50%;
+  transform: translate(-50%);
 }
 
 .previous-button__post-name,
 .next-button__post-name {
-  display: none;
+  white-space: nowrap;
+}
+
+.previous-button__post-name,
+.next-button__post-name {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.6em;
+  line-height: normal;
+  transition: transform $tt;
+  z-index: 10;
+}
+
+.previous-button__post-name {
+  right: calc(100% + 15px);
+
+  a {
+    padding-left: 50px;
+  }
+}
+
+.next-button__post-name {
+  left: calc(100% + 15px);
+
+  a {
+    padding-right: 50px;
+  }
 }
 
 .previous-button:hover {
   .previous-button__post-name {
-    display: block;
+    transform: translate(calc(100%));
   }
 }
 
+
 .next-button:hover {
   .next-button__post-name {
-    display: block;
+    transform: translate(calc(-100%));
   }
 }
