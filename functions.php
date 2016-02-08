@@ -11,15 +11,26 @@
 // Enqueue scripts
 //
 
+// Javascript
 function sandbox_enqueue_scripts() {
-  $application = sandbox_is_local() ? 'application.js' : 'application.min.js';
+  $application_js = sandbox_is_local() ? 'application.js' : 'application.min.js';
+  $javascript_version = filemtime( get_stylesheet_directory() . '/js/build/' . $application_js);
   wp_enqueue_script('jquery');
   wp_enqueue_script(
     'application',
-    get_stylesheet_directory_uri() . '/js/build/' . $application,
+    get_stylesheet_directory_uri() . '/js/build/' . $application_js,
     array('jquery'),
-    '1.0',
+    $javascript_version,
     true // insert in footer
+  );
+
+  $css_version = filemtime( get_stylesheet_directory() . '/style.css');
+  wp_enqueue_style(
+    'sandbox-stylesheet',
+    get_stylesheet_directory_uri() . '/style.css',
+    array(),
+    $css_version,
+    'all'
   );
 }
 add_action( 'wp_enqueue_scripts', 'sandbox_enqueue_scripts' );

@@ -30,8 +30,6 @@ Website developed by Dylan Fisher
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width">
   <link rel="icon" type="image/png" href="<?php echo get_bloginfo('template_url'); ?>/images/favicon.png">
-  <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('stylesheet_url'); ?>" />
-  <script src="<?php echo get_bloginfo('template_url'); ?>/js/modernizr.custom.15544.js"></script>
   <?php wp_head() // For plugins ?>
 </head>
 
