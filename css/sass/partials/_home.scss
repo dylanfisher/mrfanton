@@ -60,20 +60,35 @@ body:not(.closing) .home__post-title-wrapper:not(.active) {
   transition: transform $tt-long $easing;
 }
 
+.information-link-wrapper,
+.information-link {
+  @include rem(padding-left, 30px);
+}
+
 .information-link-wrapper {
   position: fixed;
-  bottom: 0;
+  top: 100%;
   left: 0;
   background: #000;
   width: 100%;
+  height: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
-  @include rem(padding-left, 30px);
   color: #fff;
 
   a {
     color: #fff;
   }
+}
+
+.information-link {
+  position: absolute;
+  background: #000;
+  width: 100%;
+  height: 2em;
+  top: -2em;
+  line-height: 2;
+  left: 0;
 }
 
 .information-wrapper {
@@ -96,7 +111,7 @@ body:not(.closing) .home__post-title-wrapper:not(.active) {
 // Information page
 .page-information {
   .information-link-wrapper {
-    transform: translate(0, -100vh);
+    top: 0;
   }
 }
 
@@ -149,6 +164,7 @@ body.closing {
 
 .site-title {
   position: fixed;
+  width: calc(50% - 130px);
   margin-top: -$regular-font-line-height;
   display: block;
   z-index: 10;
@@ -189,10 +205,13 @@ body.closing {
   }
 }
 
+$grid-item-padding: 18px;
+
 .grid-item {
+  @include rem(padding-bottom, $grid-item-padding * 2);
   text-align: center;
 
-  &:hover {
+  a:hover {
     img,
     .grid-item__title {
       opacity: 0;
@@ -206,24 +225,25 @@ body.closing {
   img {
     margin-bottom: 10px;
   }
-}
 
-.grid-item {
-  @include rem(padding-bottom, 30px);
-}
+  @include break(hand) {
+    padding: 0 !important;
+    margin-bottom: 50px;
+  }
+} // .grid-item
 
 .grid-item:nth-child(3n) {
-  @include rem(padding-right, 15px);
+  @include rem(padding-right, $grid-item-padding);
   clear: left;
 }
 
 .grid-item:nth-child(3n+1) {
-  @include rem(padding-left, 15px);
-  @include rem(padding-right, 15px);
+  @include rem(padding-left, $grid-item-padding);
+  @include rem(padding-right, $grid-item-padding);
 }
 
 .grid-item:nth-child(3n+2) {
-  @include rem(padding-left, 15px);
+  @include rem(padding-left, $grid-item-padding);
 }
 
 .grid-item__category {

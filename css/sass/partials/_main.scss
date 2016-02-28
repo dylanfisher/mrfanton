@@ -12,6 +12,10 @@ body {
 
 .wrapper {
   @include rem(padding, 20px 30px);
+
+  @include break(hand) {
+    padding: 10px;
+  }
 }
 
 .site-title {
@@ -21,7 +25,7 @@ body {
 
 .information-wrapper {
   position: absolute;
-  top: 2em; // warning: Magic Number
+  top: 0;
   left: 0;
   @include rem(padding-left, 30px);
   width: 100%;

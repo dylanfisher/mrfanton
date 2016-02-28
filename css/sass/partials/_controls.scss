@@ -1,5 +1,14 @@
 // Controls
 
+.controls,
+.site-title {
+  &,
+  a,
+  svg * {
+    transition: color $tt-long, stroke $tt-long, opacity $tt !important;
+  }
+}
+
 .color-scheme--dark {
   background: $dark-gray;
 
@@ -14,7 +23,7 @@
   .previous-button,
   .next-button,
   .down-button {
-    stroke: #fff;
+    color: #fff;
   }
 }
 
@@ -31,6 +40,70 @@
     &,
     a {
       color: #fff;
+
+    }
+  }
+}
+
+// Background checker
+.background-checker,
+.background-checker-bottom {
+  position: fixed;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  z-index: -1;
+}
+
+.background-checker {
+  top: 0;
+}
+
+.background-checker-bottom {
+  bottom: 0;
+}
+
+// Background check plugin classes
+.background--light {
+  .controls,
+  .site-title {
+    &,
+    a,
+    svg * {
+      color: #000;
+      stroke: #000;
+    }
+  }
+}
+
+.background--dark {
+  .controls,
+  .site-title {
+    &,
+    a,
+    svg * {
+      color: #fff;
+      stroke: #fff;
+    }
+  }
+}
+
+.controls__bottom-controls {
+  &.background--light {
+    a,
+    svg * {
+      color: #000;
+      stroke: #000;
+    }
+  }
+}
+
+.controls__bottom-controls {
+  &.background--dark {
+    a,
+    svg * {
+      color: #fff;
+      stroke: #fff;
     }
   }
 }
@@ -121,7 +194,6 @@
 .down-button {
   bottom: 30px;
   z-index: 9;
-  stroke: #000;
 }
 
 .previous-button,
@@ -141,6 +213,11 @@
   width: $regular-font-size * 2.25;
   left: 50%;
   transform: translate(-50%);
+  transition: opacity $tt;
+
+  .js-has-scrolled & {
+    opacity: 0;
+  }
 }
 
 .previous-button__post-name,

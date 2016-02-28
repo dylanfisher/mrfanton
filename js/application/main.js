@@ -11,6 +11,9 @@ Fanton.tt      = 400;
 Fanton.ttLong  = 800;
 Fanton.easing  = 'cubic-bezier(0.23, 1, 0.32, 1)';
 Fanton.stateInitiated = false;
+Fanton.scrollTop = $(window).scrollTop();
+
+jQuery.easing.def = 'easeInOutQuart';
 
 // Bind to StateChange Event
 History.Adapter.bind(window, 'statechange', function() { // Note: We are using statechange instead of popstate
@@ -37,6 +40,14 @@ History.Adapter.bind(window, 'statechange', function() { // Note: We are using s
 });
 
 //
+// DOCUMENT READY
+//
+
+$(function() {
+  Fanton.backgroundCheckInit();
+});
+
+//
 // OPEN PROJECT
 //
 
@@ -60,11 +71,11 @@ $(document).on('click', '.home__post-title-link', function(e) {
   if($link.hasClass('home__post-title-link--grid-mode')) {
     $('#ajax-wrapper').addClass('grid-mode-active');
     $wrapper.find('.home__post-image--grid').transition({opacity: 1}, Fanton.ttLong, Fanton.easing, function() {
-      $('html').removeClass('transitioning');
+      afterOpeningTransitionCallbacks();
     });
   } else {
     $wrapper.find('.home__post-image').transition({x: '-100%'}, Fanton.ttLong, Fanton.easing, function() {
-      $('html').removeClass('transitioning');
+      afterOpeningTransitionCallbacks();
     });
   }
 
@@ -76,6 +87,11 @@ $(document).on('click', '.home__post-title-link', function(e) {
 
   var colorScheme = $link.attr('data-color-scheme');
   Fanton.setColorScheme(colorScheme);
+
+  function afterOpeningTransitionCallbacks() {
+    $('html').removeClass('transitioning');
+    Fanton.backgroundCheckInit();
+  }
 });
 
 //
@@ -83,40 +99,21 @@ $(document).on('click', '.home__post-title-link', function(e) {
 //
 
 $(document).on('click', '.close-button', function() {
-  if(Fanton.transitionInProgress()) return;
-  Fanton.stateInitiated = true;
-  console.log('Close project');
+  console.log(Fanton);
+  console.log(Fanton.closeProject);
+  Fanton.closeProject();
+});
 
-  History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
 
-  $('body').addClass('closing single-project-closing').removeClass('single-project-loaded showing-post-information');
-  $('html').addClass('transitioning');
-
-  $('html, body').scrollTop(0);
-
-  if($('body').hasClass('grid-mode')) {
-    $('#ajax-wrapper').transition({opacity: 0}, Fanton.ttLong, Fanton.easing, function() {
-      $('#ajax-wrapper').empty().css('opacity', 1);
-      $('body').removeClass('closing single-project-closing');
-      $('html').removeClass('transitioning');
-    });
-
-    $('.home__post-image--grid').css({opacity: 0});
-  } else {
-    $('#ajax-wrapper').transition({x: $(window).width()}, Fanton.ttLong, Fanton.easing, function() {
-      $('#ajax-wrapper').empty().css('transform', '');
-      $('body').removeClass('closing single-project-closing');
-      $('html').removeClass('transitioning');
-    });
-
-    $('.home__post-title-wrapper.active .home__post-image').transition({x: '0%'}, Fanton.ttLong, Fanton.easing, function() {
-      $('.home__post-title-wrapper .home__post-image').css('transform', '');
-    });
+$(document).on('click', '.site-title', function(e) {
+  console.log(Fanton.isViewingSingleProject());
+  if(Fanton.isViewingSingleProject()) {
+    Fanton.closeProject();
+    e.preventDefault();
+  } else if(Fanton.isViewingInformation()) {
+    Fanton.closeInformation();
+    e.preventDefault();
   }
-
-  $('.home__post-title-wrapper, .home__post-title-wrapper--grid').removeClass('active');
-
-  Fanton.removeColorScheme();
 });
 
 //
@@ -150,19 +147,7 @@ $(document).on('click', '.information-link', function(e) {
 //
 
 $(document).on('click', '.information__close-button', function() {
-  if(Fanton.transitionInProgress()) return;
-  Fanton.stateInitiated = true;
-  console.log('Close information');
-
-  History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
-
-  var $wrapper = $(this).closest('.information-link-wrapper');
-  $wrapper.removeClass('active');
-  $('html').addClass('transitioning');
-  $('body').removeClass('information-open');
-  $wrapper.transition({y: '0'}, Fanton.ttLong, Fanton.easing, function() {
-    $('html').removeClass('transitioning');
-  });
+  Fanton.closeInformation();
 });
 
 //
@@ -198,7 +183,75 @@ $(document).on('click', '.images-button', function() {
   });
 });
 
-// Global variables
+//
+// ON SINGLE PROJECT: CLICK ARROW TO GO DOWN TO PROJECT
+//
+
+$(document).on('click', '.down-button', function() {
+  $('html, body').animate({scrollTop: $(window).height()}, 600);
+});
+
+//
+// ON SINGLE PROJECT: ARROW KEYS NAVIGATE BETWEEN IMAGES
+//
+
+$(document).keydown(function(e) {
+  if (!Fanton.isViewingSingleProject()) {
+    return;
+  }
+
+  var images = [];
+  $('.post__images img').each(function(){
+    images.push(this.offsetTop);
+  });
+
+  var dir = false,
+  targetUp = -1;
+
+  switch (e.keyCode) {
+    case 38:
+    dir = -1;
+    break;
+
+    case 40:
+    dir = 1;
+    break;
+
+    default:
+    return;
+  }
+
+  if (dir) {
+    e.preventDefault();
+    winUp = window.scrollY;
+    $.each(images, function(i, v){
+      if ((dir == 1 && winUp < v && targetUp < 0) || (dir == -1 && winUp > v)) {
+        targetUp = v;
+      }
+    });
+
+    if (targetUp >= 0) {
+      $('html, body').stop().animate({scrollTop: targetUp}, 600);
+    } else if (dir == -1) {
+      $('html, body').stop().animate({scrollTop: 0}, 600);
+    }
+  }
+});
+
+//
+// SCROLL EVENTS
+//
+
+$(window).on('scroll', function() {
+  Fanton.scrollTop = $(window).scrollTop();
+  if(Fanton.scrollTop > 0) {
+    $('html').addClass('js-has-scrolled');
+  } else {
+    $('html').removeClass('js-has-scrolled');
+  }
+});
+
+// Global functions
 
 Fanton.setSinglePost = function() {
   console.log('Fanton.setSinglePost');
@@ -229,4 +282,79 @@ Fanton.setColorScheme = function(forceColorScheme) {
 Fanton.transitionInProgress = function() {
   return false;
   // return $('html').hasClass('transitioning');
+};
+
+Fanton.isViewingSingleProject = function() {
+  return $('body').hasClass('single-project-loaded');
+};
+
+Fanton.isViewingInformation = function() {
+  return $('body').hasClass('information-open');
+};
+
+Fanton.closeProject = function() {
+  if(Fanton.transitionInProgress()) return;
+  Fanton.stateInitiated = true;
+  console.log('Close project');
+
+  History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
+
+  $('body').addClass('closing single-project-closing').removeClass('single-project-loaded showing-post-information');
+  $('html').addClass('transitioning');
+
+  $('html, body').scrollTop(0);
+
+  if($('body').hasClass('grid-mode')) {
+    $('#ajax-wrapper').transition({opacity: 0}, Fanton.ttLong, Fanton.easing, function() {
+      $('#ajax-wrapper').empty().css('opacity', 1);
+      $('body').removeClass('closing single-project-closing');
+      $('html').removeClass('transitioning');
+    });
+
+    $('.home__post-image--grid').css({opacity: 0});
+  } else {
+    $('#ajax-wrapper').transition({x: $(window).width()}, Fanton.ttLong, Fanton.easing, function() {
+      $('#ajax-wrapper').empty().css('transform', '');
+      $('body').removeClass('closing single-project-closing');
+      $('html').removeClass('transitioning');
+    });
+
+    $('.home__post-title-wrapper.active .home__post-image').transition({x: '0%'}, Fanton.ttLong, Fanton.easing, function() {
+      $('.home__post-title-wrapper .home__post-image').css('transform', '');
+    });
+  }
+
+  $('.home__post-title-wrapper, .home__post-title-wrapper--grid').removeClass('active');
+
+  Fanton.removeColorScheme();
+};
+
+Fanton.closeInformation = function() {
+  if(Fanton.transitionInProgress()) return;
+  Fanton.stateInitiated = true;
+  console.log('Close information');
+
+  History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
+
+  var $wrapper = $('.information-link-wrapper');
+  $wrapper.removeClass('active');
+  $('html').addClass('transitioning');
+  $('body').removeClass('information-open');
+  $wrapper.transition({y: '0'}, Fanton.ttLong, Fanton.easing, function() {
+    $('html').removeClass('transitioning');
+  });
+};
+
+Fanton.backgroundCheckInit = function() {
+  BackgroundCheck.refresh();
+
+  console.log('backgroundCheck tried to init', $('.post__images img, .home__post-image__inner'));
+  if($('.post__images img, .home__post-image__inner').length) {
+    console.log('backgroundCheck INIT TRUE');
+    BackgroundCheck.init({
+      targets: '.background-checker, .background-checker-bottom',
+      changeParent: true,
+      images: '.post__images img, .home__post-image__inner'
+    });
+  }
 };

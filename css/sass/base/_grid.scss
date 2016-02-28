@@ -9,10 +9,18 @@
 
 .one-third {
   width: 33.33%;
+
+  @include break(hand) {
+    width: 100%;
+  }
 }
 
 .one-half {
   width: 50%;
+
+  @include break(hand) {
+    width: 100%;
+  }
 }
 
 .scroll-column {
