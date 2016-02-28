@@ -1031,7 +1031,7 @@ body.closing .ajax-wrapper {
 .showing-post-information .controls a,
 .showing-post-information .site-title,
 .showing-post-information .site-title a {
-  color: #fff; }
+  color: #fff !important; }
 
 .background-checker,
 .background-checker-bottom {
