@@ -727,15 +727,16 @@ body {
 .information-open .site-title {
   color: #fff; }
 
-body:not(.closing) .home__post-title-wrapper:not(.active):hover {
-  text-align: right; }
-  body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-title {
-    display: none; }
-  body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-category {
-    display: inline; }
-  body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-image {
-    transform: translate(-50%, 0);
-    z-index: 2; }
+body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-title,
+body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-category {
+  display: inline; }
+
+body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-title {
+  visibility: hidden; }
+
+body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-image {
+  transform: translate(-50%, 0);
+  z-index: 2; }
 
 .home__post-title-wrapper {
   display: inline-block; }
@@ -868,12 +869,11 @@ body.closing .ajax-wrapper {
   z-index: 10; }
   .grid-mode .site-title {
     margin-top: -5.4vw; }
-  .site-title:hover {
-    text-align: right; }
-    .site-title:hover .site-title__text {
-      display: none; }
-    .site-title:hover .site-title__hover-text {
-      display: inline; }
+  .site-title:hover .site-title__text,
+  .site-title:hover .site-title__hover-text {
+    display: inline; }
+  .site-title:hover .site-title__text {
+    visibility: hidden; }
   @media (max-width: 767px) {
     .site-title {
       margin-top: -5vw; }

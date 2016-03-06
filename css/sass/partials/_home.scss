@@ -1,13 +1,12 @@
 body:not(.closing) .home__post-title-wrapper:not(.active) {
   &:hover {
-    text-align: right;
-
-    .home__post-title {
-      display: none;
-    }
-
+    .home__post-title,
     .home__post-category {
       display: inline;
+    }
+
+    .home__post-title {
+      visibility: hidden;
     }
 
     .home__post-image {
@@ -174,14 +173,13 @@ body.closing {
   }
 
   &:hover {
-    text-align: right;
-
-    .site-title__text {
-      display: none;
-    }
-
+    .site-title__text,
     .site-title__hover-text {
       display: inline;
+    }
+
+    .site-title__text {
+      visibility: hidden;
     }
   } // :hover
 
