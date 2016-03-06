@@ -31,8 +31,8 @@
           ?>
       </div><!-- .post__images -->
       <div class="post__information-wrapper">
-        <div class="post__information col">
-          <div class="post__information__content scroll-column scroll-column-1 one-half">
+        <div class="post__information">
+          <div class="post__information__content scroll-column scroll-column-1 col-sm-6">
             <div class="post__information__header">
               <div class="post__information__title">
                 <?php the_title(); ?>
@@ -43,7 +43,7 @@
             </div>
             <?php the_field('information'); ?>
           </div>
-          <div class="post__information__credits scroll-column scroll-column-2 one-half">
+          <div class="post__information__credits scroll-column scroll-column-2 col-sm-6">
             <?php the_field('credits'); ?>
           </div>
         </div><!-- .post__information -->

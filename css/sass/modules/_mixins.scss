@@ -2,37 +2,36 @@
 //  Mixins
 //
 
-// Breakpoint mixin
-@mixin break($size) {
-  @if ($size == ext){
-    @media (max-width: $break-ext) {
-      @content;
-    }
+@mixin gutters {
+  padding-left: $gutter;
+  padding-right: $gutter;
+}
+
+// Breakpoints
+// Usage:
+// @include breakpoint(sm) {
+//   display: none;
+// }
+
+@mixin breakpoint($class) {
+  @if $class == xs {
+    @media (max-width: $breakpoint-small - 1) { @content; }
   }
 
-  @if ($size == desk){
-    @media (max-width: $break-desk) {
-      @content;
-    }
+  @else if $class == sm {
+    @media (min-width: $breakpoint-small) { @content; }
   }
 
-  @if ($size == tab){
-    @media (max-width: $break-tab) {
-      @content;
-    }
+  @else if $class == md {
+    @media (min-width: $breakpoint-medium) { @content; }
   }
 
-  @if ($size == hand){
-    @media (max-width: $break-hand) {
-      @content;
-    }
+  @else if $class == lg {
+    @media (min-width: $breakpoint-large) { @content; }
   }
 
-  // Pixel density media query
-  @if ($size == retina){
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      @content;
-    }
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
   }
 }
 
@@ -84,11 +83,20 @@
     display: none;
   }
 
+  .nav-col {
+    width: 100% !important;
+  }
+
   .home__post-image {
     position: absolute;
   }
 
   .home__post-title-wrapper--grid.active {
+    position: absolute;
+    width: 100% !important;
+    top: 0;
+    left: -$gutter;
+
     .home__post-image--grid {
       opacity: 1;
     }
@@ -102,4 +110,9 @@
   .ajax-wrapper {
     display: block;
   }
+}
+
+@mixin col-offset($offset-num) {
+  $col-size: 100/6;
+  $offset: $col-size * $offset-num - $col-size;
 }

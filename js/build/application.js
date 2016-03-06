@@ -224,6 +224,7 @@ Fanton.ttLong  = 800;
 Fanton.easing  = 'cubic-bezier(0.23, 1, 0.32, 1)';
 Fanton.stateInitiated = false;
 Fanton.scrollTop = $(window).scrollTop();
+Fanton.gutterSize = 1.75; // Gutter size in VW, match this to the CSS value
 
 jQuery.easing.def = 'easeInOutQuart';
 
@@ -237,7 +238,7 @@ History.Adapter.bind(window, 'statechange', function() { // Note: We are using s
       '.close-button',
       '.information__close-button'
       ];
-    $(closeButtons.join(',')).trigger('click');
+    // $(closeButtons.join(',')).trigger('click');
   } else {
     if(Fanton.stateInitiated) return;
 
@@ -286,9 +287,12 @@ $(document).on('click', '.home__post-title-link', function(e) {
       afterOpeningTransitionCallbacks();
     });
   } else {
-    $wrapper.find('.home__post-image').transition({x: '-100%'}, Fanton.ttLong, Fanton.easing, function() {
+    $wrapper.find('.home__post-image').transition({}, Fanton.ttLong, Fanton.easing, function() {
       afterOpeningTransitionCallbacks();
     });
+    // $wrapper.find('.home__post-image').transition({x: -(100- Fanton.gutterSize) + '%'}, Fanton.ttLong, Fanton.easing, function() {
+    //   afterOpeningTransitionCallbacks();
+    // });
   }
 
   History.pushState({stateUrl: url}, title, url);
@@ -312,7 +316,6 @@ $(document).on('click', '.home__post-title-link', function(e) {
 
 $(document).on('click', '.close-button', function() {
   console.log(Fanton);
-  console.log(Fanton.closeProject);
   Fanton.closeProject();
 });
 
@@ -463,6 +466,20 @@ $(window).on('scroll', function() {
   }
 });
 
+//
+// HOVER EVENTS ON GRID ITEMS
+//
+
+$(document).on('mouseenter', '.grid-item a', function() {
+  var $gridItem = $(this).closest('.grid-item');
+  $gridItem.addClass('grid-item--hover');
+});
+
+$(document).on('mouseleave', '.grid-item a', function() {
+  var $gridItem = $(this).closest('.grid-item');
+  $gridItem.removeClass('grid-item--hover');
+});
+
 // Global functions
 
 Fanton.setSinglePost = function() {
@@ -504,6 +521,10 @@ Fanton.isViewingInformation = function() {
   return $('body').hasClass('information-open');
 };
 
+Fanton.isViewingSingleProjectInformation = function() {
+  return $('body').hasClass('showing-post-information');
+};
+
 Fanton.closeProject = function() {
   if(Fanton.transitionInProgress()) return;
   Fanton.stateInitiated = true;
@@ -511,34 +532,55 @@ Fanton.closeProject = function() {
 
   History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
 
-  $('body').addClass('closing single-project-closing').removeClass('single-project-loaded showing-post-information');
+  $('body').addClass('closing single-project-closing');
   $('html').addClass('transitioning');
 
   $('html, body').scrollTop(0);
 
-  if($('body').hasClass('grid-mode')) {
+  if( Fanton.isViewingSingleProjectInformation() && !$('body').hasClass('grid-mode') ) {
+    console.warn('Fanton.isViewingSingleProjectInformation() TRANSITION FADE');
     $('#ajax-wrapper').transition({opacity: 0}, Fanton.ttLong, Fanton.easing, function() {
       $('#ajax-wrapper').empty().css('opacity', 1);
-      $('body').removeClass('closing single-project-closing');
-      $('html').removeClass('transitioning');
+      afterProjectTransitionClose();
+      $('.home__post-image').css({transition: ''});
+      $('body').removeClass('showing-post-information');
     });
 
-    $('.home__post-image--grid').css({opacity: 0});
+    $('.home__post-image').css({transition: '0s'});
+
+    $('body').removeClass('single-project-loaded background--dark background--light');
+    $('.home__post-title-wrapper, .home__post-title-wrapper--grid').removeClass('active');
   } else {
-    $('#ajax-wrapper').transition({x: $(window).width()}, Fanton.ttLong, Fanton.easing, function() {
-      $('#ajax-wrapper').empty().css('transform', '');
-      $('body').removeClass('closing single-project-closing');
-      $('html').removeClass('transitioning');
-    });
+    if ($('body').hasClass('grid-mode')) {
+      console.warn('TRANSITION FADE');
+      $('#ajax-wrapper').transition({opacity: 0}, Fanton.ttLong, Fanton.easing, function() {
+        $('#ajax-wrapper').empty().css('opacity', 1);
+        afterProjectTransitionClose();
+      });
 
-    $('.home__post-title-wrapper.active .home__post-image').transition({x: '0%'}, Fanton.ttLong, Fanton.easing, function() {
-      $('.home__post-title-wrapper .home__post-image').css('transform', '');
-    });
+      $('.home__post-image--grid').css({opacity: 0});
+    } else {
+      console.warn('TRANSITION SLIDE');
+      $('#ajax-wrapper').transition({x: $(window).width()}, Fanton.ttLong, Fanton.easing, function() {
+        $('#ajax-wrapper').empty().css('transform', '');
+        afterProjectTransitionClose();
+      });
+
+      $('.home__post-title-wrapper.active .home__post-image').transition({x: '0%'}, Fanton.ttLong, Fanton.easing, function() {
+        $('.home__post-title-wrapper .home__post-image').css('transform', '');
+      });
+    }
+
+    $('body').removeClass('single-project-loaded showing-post-information background--dark background--light');
+    $('.home__post-title-wrapper, .home__post-title-wrapper--grid').removeClass('active');
   }
 
-  $('.home__post-title-wrapper, .home__post-title-wrapper--grid').removeClass('active');
-
   Fanton.removeColorScheme();
+
+  function afterProjectTransitionClose() {
+    $('body').removeClass('closing single-project-closing');
+    $('html').removeClass('transitioning');
+  }
 };
 
 Fanton.closeInformation = function() {

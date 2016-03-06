@@ -13,13 +13,14 @@ Version: 2.0
 @import "modules/variables";
 @import "modules/extends";
 @import "modules/mixins";
+@import "modules/mixins/typography_engine";
 
 // Base
 @import "base/typography";
 @import "base/normalize";
+@import "base/bootstrap";
 @import "base/base_styles";
 @import "base/helper_classes";
-@import "base/grid";
 @import "base/chromeframe";
 
 // UI

@@ -1,0 +1,18 @@
+///////////////////////////////////////////////////
+// Typography definitions
+///////////////////////////////////////////////////
+
+// Recta default
+@mixin font--default {
+  font-family: $recta-regular;
+  font-size: $hand-font-size;
+  line-height: $hand-font-line-height;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-style: normal;
+
+  @include breakpoint(sm) {
+    font-size: $regular-font-size;
+    line-height: $regular-font-line-height;
+  }
+}

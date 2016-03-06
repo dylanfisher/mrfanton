@@ -54,11 +54,11 @@ Website developed by Dylan Fisher
     </div>
   <![endif]-->
   <div class="background-checker"></div>
-  <div <?php body_class('wrapper') ?>>
+  <div <?php body_class('wrapper container-fluid') ?>>
     <div class="controls">
-      <span class="control-button close-button">Close</span>
-      <span class="control-button read-button">Read</span>
-      <span class="control-button images-button">Images</span>
+      <span class="control-button close-button col-sm-offset-6">Close</span>
+      <span class="control-button read-button col-sm-offset-8">Read</span>
+      <span class="control-button images-button col-sm-offset-8">Images</span>
 
       <div class="controls__bottom-controls">
         <div class="background-checker-bottom"></div>

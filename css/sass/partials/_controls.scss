@@ -34,6 +34,7 @@
   }
 }
 
+.information-open,
 .showing-post-information {
   .controls,
   .site-title {
@@ -41,6 +42,12 @@
     a {
       color: #fff !important;
     }
+  }
+}
+
+.information-open {
+  .grid-button {
+    display: none;
   }
 }
 
@@ -116,6 +123,14 @@
   }
 }
 
+.showing-post-information {
+  .previous-button,
+  .next-button,
+  .down-button {
+    opacity: 0;
+  }
+}
+
 .controls {
   display: none;
   transition: opacity $tt-long;
@@ -125,6 +140,7 @@
   position: fixed;
   z-index: 10;
   cursor: pointer;
+  left: 0;
 }
 
 .close-button,
@@ -133,31 +149,19 @@
 .information__close-button,
 .grid-button,
 .list-button {
-  top: 20px;
+  top: $page-top-gutter;
 
   &:hover {
     opacity: 0;
   }
 }
 
-.close-button,
-.information__close-button {
-  left: 50%;
-}
-
 .close-button {
-  padding-left: 20px;
-}
-
-.read-button,
-.images-button{
-  left: 64%;
+  padding-left: $gutter;
 }
 
 .information__close-button {
   display: none;
-  top: 72px;
-  margin-left: 3rem;
 
   .information-open & {
     display: block;
@@ -180,7 +184,7 @@
 
 .grid-button,
 .list-button {
-  left: 80%;
+  @include col-offset(6);
   z-index: 1;
 
   .single-project-loaded & {
@@ -205,12 +209,13 @@
 }
 
 .next-button {
+  left: auto;
   right: 15px;
 }
 
 .down-button {
-  width: $regular-font-size * 2.25;
   left: 50%;
+  width: $regular-font-size * 2.25;
   transform: translate(-50%);
   transition: opacity $tt;
 

@@ -11,9 +11,7 @@ body {
 }
 
 .wrapper {
-  @include rem(padding, 20px 30px);
-
-  @include break(hand) {
+  @include breakpoint(xs) {
     padding: 10px;
   }
 }
@@ -27,7 +25,6 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  @include rem(padding-left, 30px);
   width: 100%;
   background: #000;
   height: 100vh;
@@ -42,4 +39,25 @@ body {
   .site-title {
     color: #fff;
   }
+}
+
+.scroll-column {
+  position: absolute;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.scroll-column-1 {
+  left: 0;
+  padding-left: $gutters;
+}
+
+.scroll-column-2 {
+  right: 0;
+  padding-right: $gutters;
+}
+
+.large-gutters {
+  padding-left: $gutters;
+  padding-right: $gutters;
 }
