@@ -38,6 +38,10 @@
   .home__post-title-link--grid-mode {
     cursor: default;
   }
+
+  .grid-item:not(.active) {
+    opacity: 0;
+  }
 }
 
 .post__images {

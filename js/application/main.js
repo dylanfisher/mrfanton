@@ -364,7 +364,7 @@ Fanton.closeProject = function() {
   Fanton.removeColorScheme();
 
   function afterProjectTransitionClose() {
-    $('body').removeClass('closing single-project-closing');
+    $('body').removeClass('closing single-project-closing background--dark background--light background--complex');
     $('html').removeClass('transitioning');
   }
 };

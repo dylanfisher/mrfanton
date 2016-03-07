@@ -1465,6 +1465,9 @@ body.closing .ajax-wrapper {
 .single-project-loaded .home__post-title-link--grid-mode {
   cursor: default; }
 
+.single-project-loaded .grid-item:not(.active) {
+  opacity: 0; }
+
 .post__images {
   padding-top: 3.5vw; }
   .post__images img {
@@ -1633,7 +1636,8 @@ body.closing .ajax-wrapper {
 .information__close-button,
 .grid-button,
 .list-button {
-  top: 30px; }
+  top: 30px;
+  padding-left: 1.75vw; }
   .close-button:hover,
   .read-button:hover,
   .images-button:hover,

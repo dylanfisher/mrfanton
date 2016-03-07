@@ -154,6 +154,7 @@
 .grid-button,
 .list-button {
   top: $page-top-gutter;
+  padding-left: $gutter;
 
   &:hover {
     opacity: 0;
