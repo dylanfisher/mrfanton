@@ -30,7 +30,10 @@ Version: 2.0
 html {
   font-size: 62.5%;
   font-family: "recta", sans-serif;
-  text-rendering: geometricPrecision; }
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" on; }
   @media (max-width: 767px) {
     html {
       text-rendering: auto; } }

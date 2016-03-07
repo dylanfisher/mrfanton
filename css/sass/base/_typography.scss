@@ -5,7 +5,10 @@
 html {
   font-size: 62.5%;
   font-family: $recta-regular;
-  text-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" on;
 
   @include breakpoint(xs) {
     text-rendering: auto;
