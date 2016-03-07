@@ -41,20 +41,27 @@ body {
   }
 }
 
-.scroll-column {
-  position: absolute;
-  height: 100%;
-  overflow-y: auto;
+@include breakpoint(sm) {
+  .scroll-column {
+    position: absolute;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .scroll-column-1 {
+    left: 0;
+    padding-left: $gutters;
+  }
+
+  .scroll-column-2 {
+    right: 0;
+    padding-right: $gutters;
+  }
 }
 
-.scroll-column-1 {
-  left: 0;
-  padding-left: $gutters;
-}
-
-.scroll-column-2 {
-  right: 0;
-  padding-right: $gutters;
+.gutters {
+  padding-left: $gutter;
+  padding-right: $gutter;
 }
 
 .large-gutters {

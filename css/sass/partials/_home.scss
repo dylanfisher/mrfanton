@@ -40,13 +40,17 @@ body:not(.closing) .home__post-title-wrapper:not(.active) {
 
 .home__post-image {
   position: fixed;
-  width: calc(100% + #{$gutters});
+  width: calc(100% + #{$gutter});
   height: 100vh;
   top: 0;
   left: 100%;
   z-index: 1;
   overflow: hidden;
   transition: transform $tt-long $easing;
+
+  .grid-mode & {
+    width: 100%;
+  }
 }
 
 .home__post-image__inner {
@@ -123,7 +127,7 @@ body.closing {
 
 .ajax-wrapper {
   display: none;
-  margin-top: 100vh;
+  padding-top: 100vh;
   position: absolute;
   z-index: 1;
   top: 0;
@@ -222,8 +226,11 @@ body.closing {
   opacity: 0;
 }
 
-.ajax-wrapper.grid-mode-active {
-
+.page .ajax-wrapper {
+  .post__images {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
 .home__post-image--grid {

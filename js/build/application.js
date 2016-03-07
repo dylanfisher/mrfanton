@@ -238,7 +238,7 @@ History.Adapter.bind(window, 'statechange', function() { // Note: We are using s
       '.close-button',
       '.information__close-button'
       ];
-    // $(closeButtons.join(',')).trigger('click');
+    $(closeButtons.join(',')).trigger('click');
   } else {
     if(Fanton.stateInitiated) return;
 
@@ -411,9 +411,7 @@ $(document).on('click', '.down-button', function() {
 //
 
 $(document).keydown(function(e) {
-  if (!Fanton.isViewingSingleProject()) {
-    return;
-  }
+  if (!Fanton.isViewingSingleProject()) return;
 
   var images = [];
   $('.post__images img').each(function(){
@@ -548,7 +546,7 @@ Fanton.closeProject = function() {
 
     $('.home__post-image').css({transition: '0s'});
 
-    $('body').removeClass('single-project-loaded background--dark background--light');
+    $('body').removeClass('single-project-loaded background--dark background--light background--complex');
     $('.home__post-title-wrapper, .home__post-title-wrapper--grid').removeClass('active');
   } else {
     if ($('body').hasClass('grid-mode')) {
@@ -571,7 +569,7 @@ Fanton.closeProject = function() {
       });
     }
 
-    $('body').removeClass('single-project-loaded showing-post-information background--dark background--light');
+    $('body').removeClass('single-project-loaded showing-post-information background--dark background--light background--complex');
     $('.home__post-title-wrapper, .home__post-title-wrapper--grid').removeClass('active');
   }
 

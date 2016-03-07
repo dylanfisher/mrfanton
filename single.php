@@ -6,7 +6,7 @@
   <div id="ajax-wrapper" class="ajax-wrapper">
     <div class="content single-post-content" data-color-scheme="<?php echo get_field('color_scheme'); ?>">
       <div id="post-<?php the_ID() ?>" <?php post_class() ?>>
-        <div class="post__images">
+        <div class="post__images gutters">
           <?php
             $acf_repeater = 'images';
             $acf_image_field_name = 'image';
@@ -24,8 +24,11 @@
 
                 $column_size = get_sub_field('image_width');
                 $column_width = $column_size . '%';
+                $column_class = $column_size == 100 ? 'full-width-image' : 'partial-width-image';
 
-                echo '<img src="'.$url.'" width="'.$width.'" height="'.$height.'" alt="'.$alt.'" style="width: '.$column_width.';">';
+                echo '<div class="post__images__image-wrapper '.$column_class.'" style="width: '.$column_width.';">';
+                  echo '<img src="'.$url.'" width="'.$width.'" height="'.$height.'" alt="'.$alt.'">';
+                echo '</div>';
               endwhile;
             endif;
           ?>
