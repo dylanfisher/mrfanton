@@ -7,6 +7,11 @@
   padding-right: $gutter;
 }
 
+@mixin large-gutters {
+  padding-left: $gutter*2;
+  padding-right: $gutter*2;
+}
+
 // Breakpoints
 // Usage:
 // @include breakpoint(sm) {
@@ -80,7 +85,7 @@
 @mixin single-project {
   .information-link-wrapper,
   .home__post-title-wrapper:not(.active) {
-    display: none;
+    // display: none;
   }
 
   .nav-col {
@@ -88,7 +93,7 @@
   }
 
   .home__post-image {
-    position: absolute;
+    // position: absolute;
   }
 
   .home__post-title-wrapper--grid.active {
@@ -104,7 +109,7 @@
   }
 
   .home__post-grid-image {
-    opacity: 0;
+    // opacity: 0;
   }
 
   .controls,

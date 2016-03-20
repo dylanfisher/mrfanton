@@ -70,7 +70,8 @@
 }
 
 // Background check plugin classes
-.background--light {
+.background--light,
+.color-scheme--light {
   .controls,
   .site-title {
     &,
@@ -82,7 +83,8 @@
   }
 }
 
-.background--dark {
+.background--dark,
+.color-scheme--dark {
   .controls,
   .site-title {
     &,

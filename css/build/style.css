@@ -1259,23 +1259,21 @@ body {
   padding-left: 3.5vw;
   padding-right: 3.5vw; }
 
-body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-title,
-body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-category {
+body:not(.closing):not(.single-project-loaded) .home__post-title-wrapper:not(.active):hover .home__post-title,
+body:not(.closing):not(.single-project-loaded) .home__post-title-wrapper:not(.active):hover .home__post-category {
   display: inline; }
 
-body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-title {
+body:not(.closing):not(.single-project-loaded) .home__post-title-wrapper:not(.active):hover .home__post-title {
   visibility: hidden; }
 
-body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-image {
+body:not(.closing):not(.single-project-loaded) .home__post-title-wrapper:not(.active):hover .home__post-image {
   transform: translate(-50%, 0);
   z-index: 2; }
 
 .home__post-title-wrapper {
   display: inline-block; }
-  .home__post-title-wrapper:hover {
-    width: 100%; }
-    .home__post-title-wrapper:hover .home__post-title-link {
-      display: inline-block; }
+  .home__post-title-wrapper:hover .home__post-title-link {
+    display: inline-block; }
   .home__post-title-wrapper.active .home__post-image__inner {
     transform: translate(0, 0); }
 
@@ -1284,7 +1282,7 @@ body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-imag
 
 .home__post-image {
   position: fixed;
-  width: calc(100% + 1.75vw);
+  width: 100%;
   height: 100vh;
   top: 0;
   left: 100%;
@@ -1316,6 +1314,10 @@ body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-imag
   .information-link-wrapper a {
     color: #fff; }
 
+.is-hovering-on-list-item .information-link-wrapper,
+.list-mode.js-single-project-closing .information-link-wrapper {
+  z-index: -1; }
+
 .information-link-inner-wrapper {
   position: absolute;
   background: #000;
@@ -1334,15 +1336,8 @@ body:not(.closing) .home__post-title-wrapper:not(.active):hover .home__post-imag
 .page-information .information-link-wrapper {
   transform: translate(0px, -100vh); }
 
-body.single-project-loaded .information-link-wrapper,
-body.single-project-loaded .home__post-title-wrapper:not(.active) {
-  display: none; }
-
 body.single-project-loaded .nav-col {
   width: 100% !important; }
-
-body.single-project-loaded .home__post-image {
-  position: absolute; }
 
 body.single-project-loaded .home__post-title-wrapper--grid.active {
   position: absolute;
@@ -1351,9 +1346,6 @@ body.single-project-loaded .home__post-title-wrapper--grid.active {
   left: 0; }
   body.single-project-loaded .home__post-title-wrapper--grid.active .home__post-image--grid {
     opacity: 1; }
-
-body.single-project-loaded .home__post-grid-image {
-  opacity: 0; }
 
 body.single-project-loaded .controls,
 body.single-project-loaded .ajax-wrapper {
@@ -1365,19 +1357,27 @@ body.closing .home__post-title-wrapper {
 body.closing .ajax-wrapper {
   display: block; }
 
+.ajax-wrapper__featured-image {
+  height: 100vh; }
+
 .ajax-wrapper {
   display: none;
-  padding-top: 100vh;
   position: absolute;
   z-index: 1;
   top: 0;
   left: 0; }
+  .ajax-wrapper,
+  .ajax-wrapper .content {
+    background: #fff; }
+  .color-scheme--dark .ajax-wrapper,
+  .color-scheme--dark .ajax-wrapper .content {
+    background: #1D1D1E; }
 
 .site-title__hover-text {
   display: none; }
 
 .home-page-nav {
-  padding-bottom: 45px;
+  padding-bottom: 90px;
   margin-top: calc(2.7vw + 30px); }
   .grid-mode .home-page-nav {
     margin-top: calc(2.7vw + 30px); }
@@ -1388,11 +1388,12 @@ body.closing .ajax-wrapper {
         margin-top: 10.4vw; } }
 
 .site-title {
+  padding: 0;
   position: fixed;
-  margin-top: -2.7vw;
+  top: 30px;
   z-index: 10; }
-  .grid-mode .site-title {
-    margin-top: -70px; }
+  .site-title a {
+    display: inline-block; }
   .site-title a:hover .site-title__text,
   .site-title a:hover .site-title__hover-text {
     display: inline; }
@@ -1403,6 +1404,25 @@ body.closing .ajax-wrapper {
       margin-top: -5.2vw; }
       .grid-mode .site-title {
         margin-top: -10.4vw; } }
+
+.nav-outer-wrapper {
+  padding-left: 1.75vw;
+  padding-right: 1.75vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.nav-col {
+  padding-left: 1.75vw;
+  padding-right: 1.75vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; }
 
 .grid-mode .home-page-nav {
   margin-top: 100px;
@@ -1427,6 +1447,9 @@ body.closing .ajax-wrapper {
 .grid-item__category {
   opacity: 0; }
 
+.ajax-wrapper__post {
+  overflow: hidden; }
+
 .page .ajax-wrapper .post__images {
   padding-left: 0 !important;
   padding-right: 0 !important; }
@@ -1447,13 +1470,6 @@ body.closing .ajax-wrapper {
 .home__post-title-wrapper.active .home__post-image {
   transform: translate(-100%, 0); }
 
-.list-mode.single-project-loaded .home__post-title-wrapper.active .home__post-image {
-  transform: translate(calc(-100% + 1.75vw), 0);
-  width: calc(100% + 3.5vw); }
-
-.list-mode.single-project-loaded .page .home__post-image {
-  transform: translate(calc(-100% + 1.75vw), 0); }
-
 .grid-mode.single-project-loaded .home__post-image {
   width: calc(100% + 1.75vw);
   left: -1.75vw; }
@@ -1464,8 +1480,15 @@ body.closing .ajax-wrapper {
 .single-project-loaded .home__post-title-link--grid-mode {
   cursor: default; }
 
-.single-project-loaded .grid-item:not(.active) {
-  opacity: 0; }
+.featured-image-as-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat; }
 
 .post__images {
   padding-top: 3.5vw; }
@@ -1585,7 +1608,13 @@ body.closing .ajax-wrapper {
 .background--light .controls svg *,
 .background--light .site-title,
 .background--light .site-title a,
-.background--light .site-title svg * {
+.background--light .site-title svg *,
+.color-scheme--light .controls,
+.color-scheme--light .controls a,
+.color-scheme--light .controls svg *,
+.color-scheme--light .site-title,
+.color-scheme--light .site-title a,
+.color-scheme--light .site-title svg * {
   color: #000;
   stroke: #000; }
 
@@ -1594,7 +1623,13 @@ body.closing .ajax-wrapper {
 .background--dark .controls svg *,
 .background--dark .site-title,
 .background--dark .site-title a,
-.background--dark .site-title svg * {
+.background--dark .site-title svg *,
+.color-scheme--dark .controls,
+.color-scheme--dark .controls a,
+.color-scheme--dark .controls svg *,
+.color-scheme--dark .site-title,
+.color-scheme--dark .site-title a,
+.color-scheme--dark .site-title svg * {
   color: #fff;
   stroke: #fff; }
 

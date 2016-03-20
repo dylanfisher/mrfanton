@@ -9,14 +9,14 @@
 .list-mode.single-project-loaded {
   .home__post-title-wrapper.active {
     .home__post-image {
-      transform: translate(calc(-100% + #{$gutter}), 0);
-      width: calc(100% + #{$gutters});
+      // transform: translate(calc(-100% + #{$gutter}), 0);
+      // width: calc(100% + #{$gutters});
     }
   }
 
   .page {
     .home__post-image {
-      transform: translate(calc(-100% + #{$gutter}), 0);
+      // transform: translate(calc(-100% + #{$gutter}), 0);
     }
   }
 }
@@ -39,9 +39,20 @@
     cursor: default;
   }
 
-  .grid-item:not(.active) {
-    opacity: 0;
-  }
+  // .grid-item:not(.active) {
+  //   opacity: 0;
+  // }
+}
+
+.featured-image-as-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 .post__images {

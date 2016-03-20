@@ -1,4 +1,4 @@
-body:not(.closing) .home__post-title-wrapper:not(.active) {
+body:not(.closing):not(.single-project-loaded) .home__post-title-wrapper:not(.active) {
   &:hover {
     .home__post-title,
     .home__post-category {
@@ -20,7 +20,7 @@ body:not(.closing) .home__post-title-wrapper:not(.active) {
   display: inline-block;
 
   &:hover {
-    width: 100%;
+    // width: 100%;
 
     .home__post-title-link {
       display: inline-block;
@@ -40,7 +40,8 @@ body:not(.closing) .home__post-title-wrapper:not(.active) {
 
 .home__post-image {
   position: fixed;
-  width: calc(100% + #{$gutter});
+  // width: calc(100% + #{$gutter});
+  width: 100%;
   height: 100vh;
   top: 0;
   left: 100%;
@@ -76,6 +77,13 @@ body:not(.closing) .home__post-title-wrapper:not(.active) {
 
   a {
     color: #fff;
+  }
+}
+
+.is-hovering-on-list-item,
+.list-mode.js-single-project-closing {
+  .information-link-wrapper {
+    z-index: -1;
   }
 }
 
@@ -125,13 +133,29 @@ body.closing {
   }
 }
 
+.ajax-wrapper__featured-image {
+  height: 100vh;
+}
+
 .ajax-wrapper {
   display: none;
-  padding-top: 100vh;
+  // padding-top: 100vh;
   position: absolute;
   z-index: 1;
   top: 0;
   left: 0;
+
+  &,
+  .content {
+    background: #fff;
+  }
+
+  .color-scheme--dark & {
+    &,
+    .content {
+      background: $dark-gray;
+    }
+  }
 }
 
 // Fanton site title rollover
@@ -140,7 +164,7 @@ body.closing {
 }
 
 .home-page-nav {
-  padding-bottom: 45px;
+  padding-bottom: 90px;
   margin-top: calc(#{$regular-font-line-height} + #{$page-top-gutter});
 
   .grid-mode & {
@@ -157,12 +181,18 @@ body.closing {
 }
 
 .site-title {
+  padding: 0;
   position: fixed;
-  margin-top: -$regular-font-line-height;
+  top: $page-top-gutter;
+  // margin-top: -$regular-font-line-height;
   z-index: 10;
 
   .grid-mode & {
-    margin-top: -($grid-mode-top-gutter - $page-top-gutter);
+    // margin-top: -($grid-mode-top-gutter - $page-top-gutter);
+  }
+
+  a {
+    display: inline-block;
   }
 
   a:hover {
@@ -184,6 +214,29 @@ body.closing {
     }
   }
 } // .site-title
+
+.nav-outer-wrapper {
+  @include gutters;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-col {
+  @include gutters;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.navigation-list-wrapper {
+  // @include gutters;
+}
 
 //
 // GRID MODE
@@ -224,6 +277,10 @@ body.closing {
 
 .grid-item__category {
   opacity: 0;
+}
+
+.ajax-wrapper__post {
+  overflow: hidden;
 }
 
 .page .ajax-wrapper {

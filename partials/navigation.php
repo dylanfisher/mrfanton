@@ -1,55 +1,59 @@
+<h1 class="site-title <?php echo isset($_GET['grid']) ? 'col-sm-6' : '' ?>">
+  <a href="<?php bloginfo('url') ?>/" rel="home">
+    <span class="site-title__text">
+      <?php bloginfo('name') ?>
+    </span>
+    <span class="site-title__hover-text">
+      <?php the_field('fanton_rollover', 'option'); ?>
+    </span>
+  </a>
+</h1>
+
 <div class="row">
-  <div class="nav-col <?php echo !isset($_GET['grid']) ? 'col-sm-6' : '' ?>">
-    <nav class="home-page-nav">
+  <div class="nav-outer-wrapper">
+    <div class="nav-col <?php echo !isset($_GET['grid']) ? 'col-sm-6' : '' ?>">
+      <nav class="home-page-nav">
 
-      <h1 class="site-title <?php echo isset($_GET['grid']) ? 'col-sm-6' : '' ?>">
-        <a href="<?php bloginfo('url') ?>/" rel="home">
-          <span class="site-title__text">
-            <?php bloginfo('name') ?>
-          </span>
-          <span class="site-title__hover-text">
-            <?php the_field('fanton_rollover', 'option'); ?>
-          </span>
-        </a>
-      </h1>
+        <div class="row">
+          <?php if ( isset($_GET['grid']) ): ?>
+            <a class="list-button control-button col-sm-offset-10" href="<?php bloginfo('url') ?>/" rel="home">List</a>
+          <?php else: ?>
+            <a class="grid-button control-button col-sm-offset-10" href="<?php bloginfo('url') ?>/?grid" rel="home">Grid</a>
+          <?php endif; ?>
+        </div>
 
-      <div class="row">
-        <?php if ( isset($_GET['grid']) ): ?>
-          <a class="list-button control-button col-sm-offset-10" href="<?php bloginfo('url') ?>/" rel="home">List</a>
-        <?php else: ?>
-          <a class="grid-button control-button col-sm-offset-10" href="<?php bloginfo('url') ?>/?grid" rel="home">Grid</a>
-        <?php endif; ?>
-      </div>
+        <?php
+          if(is_single()) {
+            $single_post = $post;
+          } else {
+            $single_post = false;
+          }
 
-      <?php
-        if(is_single()) {
-          $single_post = $post;
-        } else {
-          $single_post = false;
-        }
+          $args = array(
+            'posts_per_page'   => -1,
+            'post_type'        => 'post',
+          );
 
-        $args = array(
-          'posts_per_page'   => -1,
-          'post_type'        => 'post',
-        );
+          $the_query = new WP_Query( $args );
 
-        $the_query = new WP_Query( $args );
+          if ( $the_query->have_posts() ):
+            echo '<div class="navigation-list-wrapper">';
+              while ( $the_query->have_posts() ):
+                $the_query->the_post();
 
-        if ( $the_query->have_posts() ):
-          while ( $the_query->have_posts() ):
-            $the_query->the_post();
+                if ( isset($_GET['grid']) ) {
+                  include(locate_template('partials/navigation_grid.php'));
+                } else {
+                  include(locate_template('partials/navigation_list.php'));
+                }
 
-            if ( isset($_GET['grid']) ) {
-              include(locate_template('partials/navigation_grid.php'));
-            } else {
-              include(locate_template('partials/navigation_list.php'));
-            }
-
-          endwhile;
-        endif;
-        wp_reset_postdata();
-      ?>
-    </nav>
+              endwhile;
+            echo '</div>';
+          endif;
+          wp_reset_postdata();
+        ?>
+      </nav>
+    </div>
   </div>
 </div>
 
