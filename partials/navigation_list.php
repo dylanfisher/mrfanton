@@ -28,5 +28,5 @@
       }
     echo '</div>';
   echo '</div>';
-  echo '<br>';
+  echo '<div></div>';
 ?>

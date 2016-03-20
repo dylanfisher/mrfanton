@@ -28,7 +28,7 @@ Website developed by Dylan Fisher
   <title><?php wp_title( '-', true, 'right' ); echo esc_html( get_bloginfo('name'), 1 ); ?></title>
   <meta name="description" content="<?php echo get_bloginfo('description'); ?>">
   <meta name="keywords" content="">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="icon" type="image/png" href="<?php echo get_bloginfo('template_url'); ?>/images/favicon.png">
   <?php wp_head() // For plugins ?>
 </head>

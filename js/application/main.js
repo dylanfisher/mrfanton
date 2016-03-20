@@ -14,31 +14,47 @@ Fanton.stateInitiated = false;
 Fanton.scrollTop = $(window).scrollTop();
 Fanton.gutterSize = 1.75; // Gutter size in VW, match this to the CSS value
 
+Fanton.isMobile = function() {
+  if($(window).width() < 768){
+    Fanton.tt = 0;
+    Fanton.ttLong = 0;
+    return true;
+  } else {
+    return false;
+  }
+};
+
+Fanton.isNotMobile = function() {
+ return !Fanton.isMobile();
+};
+
 jQuery.easing.def = 'easeInOutQuart';
 
-// Bind to StateChange Event
-History.Adapter.bind(window, 'statechange', function() { // Note: We are using statechange instead of popstate
-  Fanton.state = History.getState(); // Note: We are using History.getState() instead of event.state
-  console.log('statechange - state: ', Fanton.state);
+if(Fanton.isNotMobile()) {
+  // Bind to StateChange Event
+  History.Adapter.bind(window, 'statechange', function() { // Note: We are using statechange instead of popstate
+    Fanton.state = History.getState(); // Note: We are using History.getState() instead of event.state
+    console.log('statechange - state: ', Fanton.state);
 
-  if(Fanton.state.url == Fanton.homeUrl || Fanton.state.data.state == 'home') {
-    var closeButtons = [
-      '.close-button',
-      '.information__close-button'
-      ];
-    $(closeButtons.join(',')).trigger('click');
-  } else {
-    if(Fanton.stateInitiated) return;
+    if(Fanton.state.url == Fanton.homeUrl || Fanton.state.data.state == 'home') {
+      var closeButtons = [
+        '.close-button',
+        '.information__close-button'
+        ];
+      $(closeButtons.join(',')).trigger('click');
+    } else {
+      if(Fanton.stateInitiated) return;
 
-    if(Fanton.state.data.stateUrl && $('.home-page-nav a[href="'+Fanton.state.data.stateUrl+'"]').length) {
-      $('.home-page-nav a[href="'+Fanton.state.data.stateUrl+'"]').first().trigger('click');
-    } else if (Fanton.state.title == 'Information') {
-      $('.information-link').trigger('click');
+      if(Fanton.state.data.stateUrl && $('.home-page-nav a[href="'+Fanton.state.data.stateUrl+'"]').length) {
+        $('.home-page-nav a[href="'+Fanton.state.data.stateUrl+'"]').first().trigger('click');
+      } else if (Fanton.state.title == 'Information') {
+        $('.information-link').trigger('click');
+      }
     }
-  }
 
-  Fanton.stateInitiated = false;
-});
+    Fanton.stateInitiated = false;
+  });
+}
 
 //
 // DOCUMENT READY
@@ -53,11 +69,15 @@ $(function() {
 //
 
 $(document).on('mouseenter', '.home-page-nav-item--list', function() {
-  $('body').addClass('is-hovering-on-list-item');
+  if(Fanton.isNotMobile()) {
+    $('body').addClass('is-hovering-on-list-item');
+  }
 });
 
 $(document).on('mouseleave', '.home-page-nav-item--list', function() {
-  $('body').removeClass('is-hovering-on-list-item');
+  if(Fanton.isNotMobile()) {
+    $('body').removeClass('is-hovering-on-list-item');
+  }
 });
 
 //
@@ -65,6 +85,8 @@ $(document).on('mouseleave', '.home-page-nav-item--list', function() {
 //
 
 $(document).on('click', '.home__post-title-link', function(e) {
+  if(Fanton.isMobile()) return;
+
   e.preventDefault();
 
   if(Fanton.transitionInProgress()) return;
@@ -136,12 +158,17 @@ $(document).on('click', '.home__post-title-link', function(e) {
 //
 
 $(document).on('click', '.close-button', function() {
+  // if(Fanton.isMobile()) return;
   console.log(Fanton);
   Fanton.closeProject();
 });
 
 
 $(document).on('click', '.site-title', function(e) {
+  if(Fanton.isMobile()) {
+    window.location = Fanton.homeUrl;
+    return;
+  }
   console.log(Fanton.isViewingSingleProject());
   if(Fanton.isViewingSingleProject()) {
     Fanton.closeProject();
@@ -157,6 +184,7 @@ $(document).on('click', '.site-title', function(e) {
 //
 
 $(document).on('click', '.information-link', function(e) {
+  if(Fanton.isMobile()) return;
   if(Fanton.transitionInProgress()) return;
   Fanton.stateInitiated = true;
   console.log('Open information');
@@ -183,6 +211,11 @@ $(document).on('click', '.information-link', function(e) {
 //
 
 $(document).on('click', '.information__close-button', function() {
+  if(Fanton.isMobile()) {
+    window.location = Fanton.homeUrl;
+    return;
+  }
+
   Fanton.closeInformation();
 });
 
@@ -208,6 +241,7 @@ $(document).on('click', '.read-button', function() {
 //
 
 $(document).on('click', '.images-button', function() {
+  // if(Fanton.isMobile()) return;
   if(Fanton.transitionInProgress()) return;
   Fanton.stateInitiated = true;
   console.log('Close post information');
@@ -276,25 +310,29 @@ $(document).keydown(function(e) {
 // SCROLL EVENTS
 //
 
-$(window).on('scroll', function() {
-  Fanton.scrollTop = $(window).scrollTop();
-  if(Fanton.scrollTop > 0) {
-    $('html').addClass('js-has-scrolled');
-  } else {
-    $('html').removeClass('js-has-scrolled has-scrolled');
-  }
-});
+if(Fanton.isNotMobile()) {
+  $(window).on('scroll', function() {
+    Fanton.scrollTop = $(window).scrollTop();
+    if(Fanton.scrollTop > 0) {
+      $('html').addClass('js-has-scrolled');
+    } else {
+      $('html').removeClass('js-has-scrolled has-scrolled');
+    }
+  });
+}
 
 //
 // HOVER EVENTS ON GRID ITEMS
 //
 
 $(document).on('mouseenter', '.grid-item a', function() {
+  if(Fanton.isMobile()) return;
   var $gridItem = $(this).closest('.grid-item');
   $gridItem.addClass('grid-item--hover');
 });
 
 $(document).on('mouseleave', '.grid-item a', function() {
+  if(Fanton.isMobile()) return;
   var $gridItem = $(this).closest('.grid-item');
   $gridItem.removeClass('grid-item--hover');
 });
@@ -302,6 +340,7 @@ $(document).on('mouseleave', '.grid-item a', function() {
 // Global functions
 
 Fanton.setSinglePost = function() {
+  if(Fanton.isMobile()) return;
   console.log('Fanton.setSinglePost');
   Fanton.state.data.stateUrl = window.location.href;
 };
@@ -345,6 +384,12 @@ Fanton.isViewingSingleProjectInformation = function() {
 };
 
 Fanton.closeProject = function() {
+  if(Fanton.isMobile()) {
+    // TODO: check if grid mode
+    window.location = Fanton.homeUrl;
+    return;
+  }
+
   if(Fanton.transitionInProgress()) return;
   Fanton.stateInitiated = true;
   console.log('Close project');
@@ -426,6 +471,11 @@ Fanton.closeProject = function() {
 };
 
 Fanton.closeInformation = function() {
+  if(Fanton.isMobile()) {
+    window.location = Fanton.homeUrl;
+    return;
+  }
+
   if(Fanton.transitionInProgress()) return;
   Fanton.stateInitiated = true;
   console.log('Close information');
@@ -442,6 +492,7 @@ Fanton.closeInformation = function() {
 };
 
 Fanton.backgroundCheckInit = function() {
+  if(Fanton.isMobile()) return;
   BackgroundCheck.refresh();
 
   console.log('backgroundCheck tried to init', $('.post__images img, .home__post-image__inner'));

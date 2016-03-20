@@ -61,7 +61,7 @@
 
 <div class="row">
   <div class="information-link-wrapper col-sm-12 large-gutters">
-    <div class="row">
+    <div class="information-link-wrapper__row row">
       <div class="information-link-inner-wrapper col-sm-12 large-gutters" href="<?php echo get_permalink($information_page_id); ?>">
         <a class="information-link" href="<?php echo get_permalink($information_page_id); ?>">
           Information
@@ -81,11 +81,11 @@
         </div>
 
         <div class="information-column--2 scroll-column scroll-column-2 col-sm-6">
-          <p class="information__close-button-wrapper">
+          <div class="information__close-button-wrapper">
             <span class="information__close-button control-button col-sm-offset-6">Close</span>
             <br>
             <br>
-          </p>
+          </div>
           <?php echo $column_2; ?>
         </div>
       </div>

@@ -87,4 +87,9 @@
 [class*="col-md-"],
 [class*="col-lg-"] {
   @include font--default;
+
+  @include breakpoint(xs) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

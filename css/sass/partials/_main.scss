@@ -7,7 +7,9 @@ html.transitioning {
 }
 
 body {
-  transition: background $tt;
+  @include breakpoint(sm) {
+    transition: background $tt;
+  }
 }
 
 .wrapper {
@@ -18,7 +20,10 @@ body {
 
 .site-title {
   text-transform: uppercase;
-  transition: opacity $tt-long;
+
+  @include breakpoint(sm) {
+    transition: opacity $tt-long;
+  }
 }
 
 .information-wrapper {
@@ -29,6 +34,27 @@ body {
   background: #000;
   height: 100vh;
   overflow: auto;
+
+  @include breakpoint(xs) {
+    position: static;
+    height: auto;
+    width: auto;
+    // padding-left: 0 !important;
+    // padding-right: 0 !important;
+    // overflow-y: scroll;
+    // -webkit-overflow-scrolling: touch;
+  }
+}
+
+.information-open {
+  .information-link-wrapper {
+    @include breakpoint(xs) {
+      padding: 0 !important;
+      transform: none !important;
+      top: 0 !important;
+      bottom: auto;
+    }
+  }
 }
 
 .information-open {
@@ -38,6 +64,14 @@ body {
 
   .site-title {
     color: #fff;
+  }
+
+  @include breakpoint(xs) {
+    .nav-col,
+    .nav-outer-wrapper,
+    .ajax-wrapper {
+      display: none !important;
+    }
   }
 }
 

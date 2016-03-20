@@ -11,6 +11,7 @@
           if(isset($image)) {
             $url = $image['sizes']['large'];
             echo '<div class="featured-image-as-background" style="background-image: url('.$url.');"></div>';
+            echo '<img class="featured-image-for-mobile" src="'.$url.'">';
           }
         ?>
       </div>

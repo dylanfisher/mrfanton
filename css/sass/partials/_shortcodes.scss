@@ -12,5 +12,9 @@
 }
 
 .indented-character__character {
-  min-width: 45px;
+  min-width: 6vw;
+
+  @include breakpoint(sm) {
+    min-width: 45px;
+  }
 }
