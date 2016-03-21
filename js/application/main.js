@@ -150,6 +150,7 @@ $(document).on('click', '.home__post-title-link', function(e) {
 
   function afterOpeningTransitionCallbacks() {
     $('html').removeClass('js-transitioning transitioning');
+    Fanton.setIframeHeight($('.single-post-content'));
     // Fanton.backgroundCheckInit();
   }
 });
