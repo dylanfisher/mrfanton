@@ -12,9 +12,19 @@ body {
   }
 }
 
+@include breakpoint(sm) {
+  .information-wrapper,
+  .post__information,
+  p, {
+    a:hover {
+      opacity: 0;
+    }
+  }
+}
+
 .wrapper {
   @include breakpoint(xs) {
-    padding: 10px;
+    // padding: 10px;
   }
 }
 
@@ -47,8 +57,17 @@ body {
 }
 
 .information-open {
-  .information-link-wrapper {
-    @include breakpoint(xs) {
+  @include breakpoint(xs) {
+    position: static !important;
+    background: #000;
+
+    .information-wrapper {
+      padding-left: $gutter !important;
+      padding-right: $gutter !important;
+    }
+
+    .information-link-wrapper {
+      position: static;
       padding: 0 !important;
       transform: none !important;
       top: 0 !important;

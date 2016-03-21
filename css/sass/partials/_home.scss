@@ -193,6 +193,10 @@ body.closing {
 
   @include breakpoint(sm) {
     display: none;
+
+    .home & {
+      display: none;
+    }
   }
 }
 
@@ -219,6 +223,7 @@ body.closing {
   z-index: 10;
 
   @include breakpoint(xs) {
+    top: $page-top-gutter-mobile;
     left: $gutter;
   }
 
@@ -253,25 +258,28 @@ body.closing {
 
 .nav-outer-wrapper {
   @include gutters;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+
+  @include breakpoint(sm) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .nav-col {
-  @include gutters;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
+  @include breakpoint(sm) {
+    @include gutters;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
 
-  @include breakpoint(xs) {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    // overflow-y: scroll;
+    // -webkit-overflow-scrolling: touch;
   }
 }
 

@@ -26,21 +26,34 @@
 
                 if(have_rows($acf_repeater)):
                   while (have_rows($acf_repeater)): the_row();
+                    $media_type = get_sub_field('media_type');
                     $image = get_sub_field($acf_image_field_name);
-                    $alt = $image['alt'];
-                    if(empty($alt)) $alt = $image['title'];
-                    $size = $image_size;
-                    $url = $image['sizes'][$size];
-                    $width = $image['sizes'][$size.'-width'];
-                    $height = $image['sizes'][$size.'-height'];
+                    $embed = get_sub_field('embed_url');
 
-                    $column_size = get_sub_field('image_width');
-                    $column_width = $column_size . '%';
-                    $column_class = $column_size == 100 ? 'full-width-image' : 'partial-width-image';
+                    // var_dump($image);
+                    // var_dump($embed);
+                    // var_dump($media_type);
 
-                    echo '<div class="post__images__image-wrapper '.$column_class.'" style="width: '.$column_width.';">';
-                      echo '<img src="'.$url.'" width="'.$width.'" height="'.$height.'" alt="'.$alt.'">';
-                    echo '</div>';
+                    if($media_type == 'video'):
+                      echo '<div class="post__images__image-wrapper full-width-image">';
+                        echo $embed;
+                      echo '</div>';
+                    else:
+                      $alt = $image['alt'];
+                      if(empty($alt)) $alt = $image['title'];
+                      $size = $image_size;
+                      $url = $image['sizes'][$size];
+                      $width = $image['sizes'][$size.'-width'];
+                      $height = $image['sizes'][$size.'-height'];
+
+                      $column_size = get_sub_field('image_width');
+                      $column_width = $column_size . '%';
+                      $column_class = $column_size == 100 ? 'full-width-image' : 'partial-width-image';
+
+                      echo '<div class="post__images__image-wrapper '.$column_class.'" style="width: '.$column_width.';">';
+                        echo '<img src="'.$url.'" width="'.$width.'" height="'.$height.'" alt="'.$alt.'">';
+                      echo '</div>';
+                    endif;
                   endwhile;
                 endif;
               ?>

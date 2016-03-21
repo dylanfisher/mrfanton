@@ -62,6 +62,7 @@ if(Fanton.isNotMobile()) {
 
 $(function() {
   // Fanton.backgroundCheckInit();
+  Fanton.setIframeHeight($('.single-post-content'));
 });
 
 //
@@ -228,6 +229,8 @@ $(document).on('click', '.read-button', function() {
   Fanton.stateInitiated = true;
   console.log('Open post information');
 
+  Fanton.lastScrollTop = $(window).scrollTop();
+
   $('html').addClass('js-transitioning');
   $('body').addClass('showing-post-information');
   $('.post__information').scrollTop(0);
@@ -251,6 +254,11 @@ $(document).on('click', '.images-button', function() {
     $('body').removeClass('showing-post-information');
     $('html').removeClass('js-transitioning post-information-transition-out transitioning');
   });
+
+  if(Fanton.isMobile()) {
+    $(window).scrollTop(Fanton.lastScrollTop);
+    console.warn('Fanton.lastScrollTop', Fanton.lastScrollTop);
+  }
 });
 
 //
@@ -258,7 +266,7 @@ $(document).on('click', '.images-button', function() {
 //
 
 $(document).on('click', '.down-button', function() {
-  $('html, body').animate({scrollTop: $(window).height()}, 600);
+  $('html, body').animate({scrollTop: $('.post__images__image-wrapper').first().offset().top}, 600);
 });
 
 //
@@ -269,7 +277,7 @@ $(document).keydown(function(e) {
   if (!Fanton.isViewingSingleProject()) return;
 
   var images = [];
-  $('.post__images img').each(function(){
+  $('.post__images .post__images__image-wrapper').each(function(){
     images.push(this.offsetTop);
   });
 
@@ -320,6 +328,14 @@ if(Fanton.isNotMobile()) {
     }
   });
 }
+
+//
+// RESIZE EVENTS
+//
+
+$(window).resize(function() {
+  Fanton.setIframeHeight($('.single-post-content'));
+});
 
 //
 // HOVER EVENTS ON GRID ITEMS
@@ -504,4 +520,30 @@ Fanton.backgroundCheckInit = function() {
       images: '.post__images img, .home__post-image__inner'
     });
   }
+};
+
+Fanton.setIframeHeight = function($parent, forceFullHeight) {
+  $parent.each(function() {
+    var parent  = $(this);
+    var iframes = $(this).find('iframe');
+
+    iframes.each(function() {
+      $(this).css({width: '', height: ''}).attr({width: '', height: ''});
+
+      var width        = $(this).width();
+      var height       = $(this).height();
+      var ratio        = width / height;
+      var parentWidth  = parent.width();
+      var parentHeight = parent.height();
+      var newWidth     = parentWidth;
+      var newHeight    = parentWidth / ratio;
+
+      if(forceFullHeight && parentHeight > newHeight) {
+        newWidth = parentHeight * ratio;
+        newHeight = parentHeight;
+      }
+
+      $(this).css({width: newWidth, height: newHeight});
+    });
+  });
 };

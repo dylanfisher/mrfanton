@@ -72,11 +72,27 @@
   }
 }
 
+.single-post-content {
+  iframe {
+    // width: 100% !important;
+    max-width: 100% !important;
+    border: 0;
+  }
+}
+
 .post__images {
-  padding-top: $gutters;
+  padding-top: $gutter;
+
+  @include breakpoint(sm) {
+    padding-top: $gutters;
+  }
 
   img {
-    padding-bottom: $gutters;
+    padding-bottom: $gutter;
+
+    @include breakpoint(sm) {
+      padding-bottom: $gutters;
+    }
   }
 
   .full-width-image {
@@ -88,7 +104,9 @@
   }
 
   .partial-width-image {
-    padding: 0 $gutter;
+    @include breakpoint(sm) {
+      padding: 0 $gutter;
+    }
   }
 }
 

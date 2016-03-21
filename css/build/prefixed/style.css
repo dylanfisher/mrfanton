@@ -29,14 +29,13 @@ Version: 2.0
 
 html {
   font-size: 62.5%;
-  font-family: "recta", sans-serif;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -moz-font-feature-settings: "liga" on; }
-  @media (max-width: 767px) {
+  font-family: "recta", sans-serif; }
+  @media (min-width: 768px) {
     html {
-      text-rendering: auto; } }
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -moz-font-feature-settings: "liga" on; } }
 
 body,
 h1, h2, h3, h4, h5, h6 {
@@ -1219,9 +1218,11 @@ html.transitioning {
   body {
     transition: background 0.4s; } }
 
-@media (max-width: 767px) {
-  .wrapper {
-    padding: 10px; } }
+@media (min-width: 768px) {
+  .information-wrapper a:hover,
+  .post__information a:hover,
+  p a:hover {
+    opacity: 0; } }
 
 .site-title {
   text-transform: uppercase; }
@@ -1244,12 +1245,19 @@ html.transitioning {
       width: auto; } }
 
 @media (max-width: 767px) {
-  .information-open .information-link-wrapper {
-    padding: 0 !important;
-    -webkit-transform: none !important;
-            transform: none !important;
-    top: 0 !important;
-    bottom: auto; } }
+  .information-open {
+    position: static !important;
+    background: #000; }
+    .information-open .information-wrapper {
+      padding-left: 1.75vw !important;
+      padding-right: 1.75vw !important; }
+    .information-open .information-link-wrapper {
+      position: static;
+      padding: 0 !important;
+      -webkit-transform: none !important;
+              transform: none !important;
+      top: 0 !important;
+      bottom: auto; } }
 
 .information-open .information-wrapper {
   display: block; }
@@ -1423,7 +1431,9 @@ body.closing .ajax-wrapper {
     display: block; }
   @media (min-width: 768px) {
     .site-title__hover-text {
-      display: none; } }
+      display: none; }
+      .home .site-title__hover-text {
+        display: none; } }
 
 .home-page-nav {
   padding-bottom: 90px;
@@ -1442,6 +1452,7 @@ body.closing .ajax-wrapper {
   z-index: 10; }
   @media (max-width: 767px) {
     .site-title {
+      top: 10px;
       left: 1.75vw; } }
   .site-title a {
     display: inline-block; }
@@ -1456,26 +1467,25 @@ body.closing .ajax-wrapper {
 
 .nav-outer-wrapper {
   padding-left: 1.75vw;
-  padding-right: 1.75vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; }
+  padding-right: 1.75vw; }
+  @media (min-width: 768px) {
+    .nav-outer-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; } }
 
-.nav-col {
-  padding-left: 1.75vw;
-  padding-right: 1.75vw;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto; }
-  @media (max-width: 767px) {
-    .nav-col {
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch; } }
+@media (min-width: 768px) {
+  .nav-col {
+    padding-left: 1.75vw;
+    padding-right: 1.75vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; } }
 
 @media (max-width: 767px) {
   .navigation-list-wrapper > .col-sm-6 {
@@ -1568,17 +1578,28 @@ body.closing .ajax-wrapper {
     .featured-image-as-background {
       display: block; } }
 
+.single-post-content iframe {
+  max-width: 100% !important;
+  border: 0; }
+
 .post__images {
-  padding-top: 3.5vw; }
+  padding-top: 1.75vw; }
+  @media (min-width: 768px) {
+    .post__images {
+      padding-top: 3.5vw; } }
   .post__images img {
-    padding-bottom: 3.5vw; }
+    padding-bottom: 1.75vw; }
+    @media (min-width: 768px) {
+      .post__images img {
+        padding-bottom: 3.5vw; } }
   @media (min-width: 768px) {
     .post__images .full-width-image {
       margin-left: -1.75vw;
       margin-right: -1.75vw;
       width: calc(100% + 3.5vw) !important; } }
-  .post__images .partial-width-image {
-    padding: 0 1.75vw; }
+  @media (min-width: 768px) {
+    .post__images .partial-width-image {
+      padding: 0 1.75vw; } }
 
 .post__images__image-wrapper {
   display: inline-block; }
