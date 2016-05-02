@@ -8,6 +8,12 @@
 
 
 //
+// Requires and includes
+//
+
+require_once 'lib/Mobile_Detect.php';
+
+//
 // Enqueue scripts
 //
 
@@ -106,6 +112,25 @@ add_action( 'admin_menu', 'sandbox_remove_menus' );
 //
 // Custom functions
 //
+
+function fanton_list_mode() {
+  $detect = new Mobile_Detect;
+
+  if ( isset( $_GET['grid'] ) ) {
+    $truth = false;
+  } else if ( $detect->isMobile() && !$detect->isTablet() ) {
+    $truth = true;
+  } else if ( isset( $_GET['list'] ) ) {
+    $truth = true;
+  } else {
+    $truth = false;
+  }
+  return $truth;
+}
+
+function fanton_grid_mode() {
+  return !fanton_list_mode();
+}
 
 // Check if running on localhost
 function sandbox_is_local() {

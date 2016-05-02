@@ -43,7 +43,7 @@ Website developed by Dylan Fisher
 
   is_page('information') ? array_push($body_classes, 'information-open') : '';
 
-  isset($_GET['list']) ? array_push($body_classes, 'list-mode') : array_push($body_classes, 'grid-mode');
+  fanton_list_mode() ? array_push($body_classes, 'list-mode') : array_push($body_classes, 'grid-mode');
 ?>
 
 <body class="<?php echo join(' ', $body_classes); ?>">

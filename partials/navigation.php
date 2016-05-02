@@ -1,4 +1,4 @@
-<h1 class="site-title <?php echo !isset($_GET['grid']) ? 'col-sm-6' : '' ?>">
+<h1 class="site-title <?php echo fanton_list_mode() ? 'col-sm-6' : '' ?>">
   <a href="<?php bloginfo('url') ?>/" rel="home">
     <span class="site-title__text">
       <?php bloginfo('name') ?>
@@ -11,11 +11,11 @@
 
 <div class="row">
   <div class="nav-outer-wrapper">
-    <div class="nav-col <?php echo isset($_GET['list']) ? 'col-sm-6' : '' ?>">
+    <div class="nav-col <?php echo fanton_list_mode() ? 'col-sm-6' : '' ?>">
       <nav class="home-page-nav">
 
         <div class="row">
-          <?php if ( !isset($_GET['list']) ): ?>
+          <?php if ( fanton_grid_mode() ): ?>
             <a class="list-button control-button col-sm-offset-10" href="<?php bloginfo('url') ?>/?list" rel="home">List</a>
           <?php else: ?>
             <a class="grid-button control-button col-sm-offset-10" href="<?php bloginfo('url') ?>/?grid" rel="home">Grid</a>
@@ -41,7 +41,7 @@
               while ( $the_query->have_posts() ):
                 $the_query->the_post();
 
-                if ( isset($_GET['list']) ) {
+                if ( fanton_list_mode() ) {
                   include(locate_template('partials/navigation_list.php'));
                 } else {
                   include(locate_template('partials/navigation_grid.php'));
