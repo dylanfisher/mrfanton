@@ -1606,7 +1606,8 @@ body.closing .ajax-wrapper {
       padding: 0 1.75vw; } }
 
 .post__images__image-wrapper {
-  display: inline-block; }
+  display: inline-block;
+  text-align: center; }
   @media (max-width: 767px) {
     .post__images__image-wrapper {
       width: 100% !important; } }

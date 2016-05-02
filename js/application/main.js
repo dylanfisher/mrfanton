@@ -529,10 +529,17 @@ Fanton.setIframeHeight = function($parent, forceFullHeight) {
     var iframes = $(this).find('iframe');
 
     iframes.each(function() {
+      if(!$(this).data('originalWidth')) {
+        $(this).data({
+          originalWidth: $(this).width(),
+          originalHeight: $(this).height(),
+        });
+      }
+
       $(this).css({width: '', height: ''}).attr({width: '', height: ''});
 
-      var width        = $(this).width();
-      var height       = $(this).height();
+      var width        = $(this).data('originalWidth');
+      var height       = $(this).data('originalHeight');
       var ratio        = width / height;
       var parentWidth  = parent.width();
       var parentHeight = parent.height();

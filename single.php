@@ -30,13 +30,25 @@
                     $image = get_sub_field($acf_image_field_name);
                     $embed = get_sub_field('embed_url');
 
-                    // var_dump($image);
-                    // var_dump($embed);
-                    // var_dump($media_type);
+                    // get iframe HTML
+                    $iframe = $embed;
+                    // use preg_match to find iframe src
+                    preg_match('/src="(.+?)"/', $iframe, $matches);
+                    $src = $matches[1];
+                    // add extra params to iframe src
+                    $params = array(
+                        'width'  => 600,
+                        'height' => 400
+                    );
+                    $new_src = add_query_arg($params, $src);
+                    $iframe = str_replace($src, $new_src, $iframe);
+                    // add extra attributes to iframe html
+                    $attributes = 'frameborder="0"';
+                    $iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $iframe);
 
                     if($media_type == 'video'):
                       echo '<div class="post__images__image-wrapper full-width-image">';
-                        echo $embed;
+                        echo $iframe;
                       echo '</div>';
                     else:
                       $alt = $image['alt'];
