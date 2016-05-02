@@ -6,11 +6,18 @@ Description: This theme was built with the 5andbox wordpress theme.
 Version: 2.0
 */
 @font-face {
-  font-family: 'recta';
-  src: url("fonts/tt-recta.eot");
-  src: url("fonts/tt-recta.eot?#iefix") format("embedded-opentype"), url("fonts/tt-recta.woff2") format("woff2"), url("fonts/tt-recta.woff") format("woff"), url("fonts/tt-recta.ttf") format("truetype"), url("fonts/tt-recta.svg#rectaregular") format("svg");
+  font-family: 'comune';
+  src: url("fonts/tt-comune-regular.eot");
+  src: url("fonts/tt-comune-regular.eot?#iefix") format("embedded-opentype"), url("fonts/tt-comune-regular.woff2") format("woff2"), url("fonts/tt-comune-regular.woff") format("woff"), url("fonts/tt-comune-regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
+
+@font-face {
+  font-family: 'comune';
+  src: url("fonts/tt-comune-regular_italic.eot");
+  src: url("fonts/tt-comune-regular_italic.eot?#iefix") format("embedded-opentype"), url("fonts/tt-comune-regular_italic.woff2") format("woff2"), url("fonts/tt-comune-regular_italic.woff") format("woff"), url("fonts/tt-comune-regular_italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic; }
 
 .ibfix {
   font-size: 0;
@@ -29,7 +36,7 @@ Version: 2.0
 
 html {
   font-size: 62.5%;
-  font-family: "recta", sans-serif; }
+  font-family: "comune", sans-serif; }
   @media (min-width: 768px) {
     html {
       text-rendering: optimizeLegibility;
@@ -39,7 +46,7 @@ html {
 
 body,
 h1, h2, h3, h4, h5, h6 {
-  font-family: "recta", sans-serif;
+  font-family: "comune", sans-serif;
   font-size: 3.9vw;
   line-height: 5.2vw;
   font-weight: 400;
@@ -919,7 +926,7 @@ th {
 [class*="col-sm-"],
 [class*="col-md-"],
 [class*="col-lg-"] {
-  font-family: "recta", sans-serif;
+  font-family: "comune", sans-serif;
   font-size: 3.9vw;
   line-height: 5.2vw;
   font-weight: 400;

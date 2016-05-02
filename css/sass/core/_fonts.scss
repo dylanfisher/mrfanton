@@ -1,11 +1,21 @@
 @font-face {
-    font-family: 'recta';
-    src: url('fonts/tt-recta.eot');
-    src: url('fonts/tt-recta.eot?#iefix') format('embedded-opentype'),
-         url('fonts/tt-recta.woff2') format('woff2'),
-         url('fonts/tt-recta.woff') format('woff'),
-         url('fonts/tt-recta.ttf') format('truetype'),
-         url('fonts/tt-recta.svg#rectaregular') format('svg');
+    font-family: 'comune';
+    src: url('fonts/tt-comune-regular.eot');
+    src: url('fonts/tt-comune-regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/tt-comune-regular.woff2') format('woff2'),
+         url('fonts/tt-comune-regular.woff') format('woff'),
+         url('fonts/tt-comune-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'comune';
+    src: url('fonts/tt-comune-regular_italic.eot');
+    src: url('fonts/tt-comune-regular_italic.eot?#iefix') format('embedded-opentype'),
+         url('fonts/tt-comune-regular_italic.woff2') format('woff2'),
+         url('fonts/tt-comune-regular_italic.woff') format('woff'),
+         url('fonts/tt-comune-regular_italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
 }

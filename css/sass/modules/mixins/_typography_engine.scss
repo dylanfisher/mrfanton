@@ -2,9 +2,9 @@
 // Typography definitions
 ///////////////////////////////////////////////////
 
-// Recta default
+// Default font
 @mixin font--default {
-  font-family: $recta-regular;
+  font-family: $font-stack-regular;
   font-size: $hand-font-size;
   line-height: $hand-font-line-height;
   font-weight: 400;
