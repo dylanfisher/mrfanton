@@ -9,9 +9,10 @@
         <?php
           $image = get_field('featured_image');
           if(isset($image)) {
-            $url = $image['sizes']['large'];
+            $url = $image['url'];
+            $url_for_mobile = $image['sizes']['large'];
             echo '<div class="featured-image-as-background" style="background-image: url('.$url.');"></div>';
-            echo '<img class="featured-image-for-mobile" src="'.$url.'">';
+            echo '<img class="featured-image-for-mobile" src="'.$url_for_mobile.'">';
           }
         ?>
       </div>

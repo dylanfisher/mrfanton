@@ -174,7 +174,7 @@
 
   @include breakpoint(sm) {
     top: $page-top-gutter;
-    padding-left: $gutter;
+    padding-left: $gutter/2;
 
     &:hover {
       opacity: 0;

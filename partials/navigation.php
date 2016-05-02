@@ -16,9 +16,9 @@
 
         <div class="row">
           <?php if ( fanton_grid_mode() ): ?>
-            <a class="list-button control-button col-sm-offset-10" href="<?php bloginfo('url') ?>/?list" rel="home">List</a>
+            <a class="list-button control-button col-sm-offset-8" href="<?php bloginfo('url') ?>/?list" rel="home">List</a>
           <?php else: ?>
-            <a class="grid-button control-button col-sm-offset-10" href="<?php bloginfo('url') ?>/?grid" rel="home">Grid</a>
+            <a class="grid-button control-button col-sm-offset-8" href="<?php bloginfo('url') ?>/?grid" rel="home">Grid</a>
           <?php endif; ?>
         </div>
 

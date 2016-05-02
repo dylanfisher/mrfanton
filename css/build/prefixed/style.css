@@ -1819,7 +1819,7 @@ body.closing .ajax-wrapper {
     .grid-button,
     .list-button {
       top: 30px;
-      padding-left: 1.75vw; }
+      padding-left: 0.875vw; }
       .close-button:hover,
       .read-button:hover,
       .images-button:hover,
