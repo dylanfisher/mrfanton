@@ -268,6 +268,11 @@
     .single-project-loaded & {
       display: none;
     }
+
+    .js-single-project-closing & {
+      display: block;
+      opacity: 1;
+    }
   }
 }
 
@@ -359,5 +364,12 @@
 .next-button:hover {
   .next-button__post-name {
     transform: translate(calc(-100%));
+  }
+}
+
+.js-single-project-closing {
+  .close-button,
+  .read-button {
+    opacity: 0;
   }
 }

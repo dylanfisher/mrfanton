@@ -1895,7 +1895,11 @@ body.closing .ajax-wrapper {
     z-index: 1; }
     .single-project-loaded .grid-button, .single-project-loaded
     .list-button {
-      display: none; } }
+      display: none; }
+    .js-single-project-closing .grid-button, .js-single-project-closing
+    .list-button {
+      display: block;
+      opacity: 1; } }
 
 .previous-button,
 .next-button,
@@ -1968,6 +1972,10 @@ body.closing .ajax-wrapper {
 .next-button:hover .next-button__post-name {
   -webkit-transform: translate(calc(-100%));
           transform: translate(calc(-100%)); }
+
+.js-single-project-closing .close-button,
+.js-single-project-closing .read-button {
+  opacity: 0; }
 
 .alignnone {
   margin: 5px 20px 20px 0; }

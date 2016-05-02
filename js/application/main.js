@@ -32,11 +32,11 @@ jQuery.easing.def = 'easeInOutQuart';
 
 if(Fanton.isNotMobile()) {
   // Bind to StateChange Event
-  History.Adapter.bind(window, 'statechange', function() { // Note: We are using statechange instead of popstate
+  History.Adapter.bind(window, 'statechange', function(e) { // Note: We are using statechange instead of popstate
     Fanton.state = History.getState(); // Note: We are using History.getState() instead of event.state
     console.log('statechange - state: ', Fanton.state);
 
-    if(Fanton.state.url == Fanton.homeUrl || Fanton.state.data.state == 'home') {
+    if(Fanton.state.url == Fanton.homeUrl || Fanton.state.url == Fanton.homeUrl + '?list' || Fanton.state.data.state == 'home') {
       var closeButtons = [
         '.close-button',
         '.information__close-button'
@@ -91,6 +91,8 @@ $(document).on('click', '.home__post-title-link', function(e) {
   e.preventDefault();
 
   if(Fanton.transitionInProgress()) return;
+  $('html').addClass('js-transitioning');
+
   Fanton.stateInitiated = true;
   if( $(this).hasClass('js-active') || ($('body').hasClass('single-project-loaded') && $(this).hasClass('home__post-title-link--grid-mode')) ) return;
   console.log('Open project');
@@ -106,7 +108,6 @@ $(document).on('click', '.home__post-title-link', function(e) {
   var title = $link.attr('data-title');
 
   $wrapper.addClass('js-active');
-  $('html').addClass('js-transitioning');
 
   if($link.hasClass('home__post-title-link--grid-mode')) {
     // GRID MODE
@@ -188,6 +189,7 @@ $(document).on('click', '.site-title', function(e) {
 $(document).on('click', '.information-link', function(e) {
   if(Fanton.isMobile()) return;
   if(Fanton.transitionInProgress()) return;
+  $('html').addClass('js-transitioning');
   Fanton.stateInitiated = true;
   console.log('Open information');
 
@@ -196,7 +198,6 @@ $(document).on('click', '.information-link', function(e) {
   var title = 'Information';
 
   $wrapper.addClass('js-active');
-  $('html').addClass('js-transitioning');
 
   History.pushState({stateUrl: url}, title, url);
 
@@ -227,12 +228,12 @@ $(document).on('click', '.information__close-button', function() {
 
 $(document).on('click', '.read-button', function() {
   if(Fanton.transitionInProgress()) return;
+  $('html').addClass('js-transitioning');
   Fanton.stateInitiated = true;
   console.log('Open post information');
 
   Fanton.lastScrollTop = $(window).scrollTop();
 
-  $('html').addClass('js-transitioning');
   $('body').addClass('showing-post-information');
   $('.post__information').scrollTop(0);
   $('.post__information-wrapper').css({opacity: 0}).transition({opacity: 1}, Fanton.ttLong, Fanton.easing, function() {
@@ -247,10 +248,11 @@ $(document).on('click', '.read-button', function() {
 $(document).on('click', '.images-button', function() {
   // if(Fanton.isMobile()) return;
   if(Fanton.transitionInProgress()) return;
+  $('html').addClass('js-transitioning');
   Fanton.stateInitiated = true;
   console.log('Close post information');
 
-  $('html').addClass('js-transitioning post-information-transition-out');
+  $('html').addClass('post-information-transition-out');
   $('.post__information-wrapper').transition({opacity: 0}, Fanton.ttLong, Fanton.easing, function() {
     $('body').removeClass('showing-post-information');
     $('html').removeClass('js-transitioning post-information-transition-out transitioning');
@@ -384,8 +386,13 @@ Fanton.setColorScheme = function(forceColorScheme) {
 };
 
 Fanton.transitionInProgress = function() {
-  return false;
-  // return $('html').hasClass('js-transitioning');
+  // return false;
+  if($('html').hasClass('js-transitioning')) {
+    return $('html').hasClass('js-transitioning');
+  } else {
+    $('html').removeClass('js-transitioning');
+    return false;
+  }
 };
 
 Fanton.isViewingSingleProject = function() {
@@ -408,13 +415,14 @@ Fanton.closeProject = function() {
   }
 
   if(Fanton.transitionInProgress()) return;
+  $('html').addClass('js-transitioning');
+
   Fanton.stateInitiated = true;
   console.log('Close project');
 
   History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
 
   $('body').addClass('js-closing js-single-project-closing');
-  $('html').addClass('js-transitioning');
 
   // $('html, body').scrollTop(0);
 
@@ -494,14 +502,15 @@ Fanton.closeInformation = function() {
   }
 
   if(Fanton.transitionInProgress()) return;
+  $('html').addClass('js-transitioning');
   Fanton.stateInitiated = true;
+
   console.log('Close information');
 
   History.pushState({state: 'home'}, 'Home', Fanton.homeUrl);
 
   var $wrapper = $('.information-link-wrapper');
   $wrapper.removeClass('js-active active');
-  $('html').addClass('js-transitioning');
   $('body').removeClass('information-open');
   $wrapper.transition({y: '0'}, Fanton.ttLong, Fanton.easing, function() {
     $('html').removeClass('js-transitioning transitioning');
