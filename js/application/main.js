@@ -295,20 +295,41 @@ $(document).keydown(function(e) {
     images.push(this.offsetTop);
   });
 
-  var dir = false,
-  targetUp = -1;
+  var url = false;
+  var dir = false;
+  var targetUp = -1;
 
   switch (e.keyCode) {
-    case 38:
-    dir = -1;
+    case 37: // Left arrow
+      if(Fanton.isViewingSingleProject()) {
+        if($('.controls__bottom-controls .previous-button a').length) {
+          url = $('.controls__bottom-controls .previous-button a').attr('href');
+        }
+      }
     break;
 
-    case 40:
-    dir = 1;
+    case 39: // Right arrow
+      if(Fanton.isViewingSingleProject()) {
+        if($('.controls__bottom-controls .next-button a').length) {
+          url = $('.controls__bottom-controls .next-button a').attr('href');
+        }
+      }
+    break;
+
+    case 38: // Up arrow
+      dir = -1;
+    break;
+
+    case 40: // Down arrow
+      dir = 1;
     break;
 
     default:
     return;
+  }
+
+  if (url) {
+    window.location = url;
   }
 
   if (dir) {

@@ -2,7 +2,8 @@
   <div class="content">
 <?php the_post() ?>
     <div id="post-<?php the_ID() ?>" <?php post_class('col') ?>>
-      <?php get_template_part('partials/navigation') ?>
+      <?php get_template_part('partials/site_title'); ?>
+      <?php get_template_part('partials/navigation'); ?>
 
       <div class="row">
         <div id="ajax-wrapper" class="ajax-wrapper">

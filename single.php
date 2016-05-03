@@ -1,6 +1,8 @@
 <?php get_header() ?>
   <?php the_post() ?>
 
+  <?php get_template_part('partials/site_title'); ?>
+
   <div class="row">
     <div id="ajax-wrapper" class="ajax-wrapper">
       <div id="ajax-wrapper__featured-image" class="ajax-wrapper__featured-image">
@@ -97,7 +99,7 @@
     </div><!-- .ajax-wrapper -->
   </div><!-- .row -->
 
-  <?php get_template_part('partials/navigation') ?>
+  <?php get_template_part('partials/navigation'); ?>
 
   <?php get_footer(); ?>
   <script>
