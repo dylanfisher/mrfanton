@@ -1369,7 +1369,6 @@ html.transitioning {
   z-index: -1; }
 
 .information-link-inner-wrapper {
-  text-align: center;
   position: absolute;
   background: #000;
   width: 100%;
@@ -1965,8 +1964,23 @@ body.closing .ajax-wrapper {
   transform: translate(calc(-100%)); }
 
 .js-single-project-closing .close-button,
-.js-single-project-closing .read-button {
+.js-single-project-closing .read-button,
+.js-single-project-closing .previous-button,
+.js-single-project-closing .next-button,
+.js-single-project-closing .down-button {
   opacity: 0; }
+
+.js-single-project-closing .controls,
+.js-single-project-closing .controls a,
+.js-single-project-closing .controls svg *,
+.js-single-project-closing .site-title,
+.js-single-project-closing .site-title a,
+.js-single-project-closing .site-title svg * {
+  color: #000;
+  stroke: #000; }
+
+.single-page-previous-post-buttons {
+  display: none; }
 
 .alignnone {
   margin: 5px 20px 20px 0; }

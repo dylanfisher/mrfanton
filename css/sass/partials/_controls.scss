@@ -369,7 +369,24 @@
 
 .js-single-project-closing {
   .close-button,
-  .read-button {
+  .read-button,
+  .previous-button,
+  .next-button,
+  .down-button {
     opacity: 0;
   }
+
+  .controls,
+  .site-title {
+    &,
+    a,
+    svg * {
+      color: #000;
+      stroke: #000;
+    }
+  }
+}
+
+.single-page-previous-post-buttons {
+  display: none;
 }

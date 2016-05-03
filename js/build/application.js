@@ -356,6 +356,17 @@ $(document).on('click', '.home__post-title-link', function(e) {
 
   $('#ajax-wrapper #ajax-wrapper__post').load(url + ' .content', function(response, status, xhr) {
     $('body').addClass('single-project-loaded');
+
+    if($('.single-page-previous-post-buttons').length) {
+      var originalPrev = $('.controls__bottom-controls').find('.previous-button');
+      var originalNext = $('.controls__bottom-controls').find('.next-button');
+      var newPrev = $('.single-page-previous-post-buttons').find('.previous-button');
+      var newNext = $('.single-page-previous-post-buttons').find('.next-button');
+      console.log('newPrev', newPrev);
+      console.log('newNext', newNext);
+      originalPrev.replaceWith(newPrev);
+      originalNext.replaceWith(newNext);
+    }
   });
 
   var colorScheme = $link.attr('data-color-scheme');
